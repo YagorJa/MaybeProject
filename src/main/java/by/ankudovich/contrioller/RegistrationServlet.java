@@ -7,39 +7,23 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
 
 public class RegistrationServlet extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        FileRepository repository = (FileRepository) getServletContext().getAttribute("fileRepository");
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        String name = req.getParameter("name");
+        String surname = req.getParameter("surname");
 
-        User user = new User(1l,name,surname,login,password);
+        long id = repository.userIdGenerator();
 
-        FileRepository repository = new FileRepository();
+        User user = new User(id,name,surname,login,password);
         repository.add(user);
 
-
-        request.setAttribute("login", login);
-        request.setAttribute("password", password);
-        request.setAttribute("name", name);
-        request.setAttribute("surname", surname);
-
-        // Получаем список всех пользователей
-        Collection<User> allUsers = repository.allUsers();
-
-        // Устанавливаем список всех пользователей как атрибут запроса
-        request.setAttribute("allUsers" , allUsers);
-
-        request.getRequestDispatcher("/display").forward(request, response);
-//        System.out.println("Список всех пользователей: " + allUsers); убедился что файл не пуст
-
-
+        resp.sendRedirect("/jsp/register.jsp");
     }
 }
