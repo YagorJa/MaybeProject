@@ -1,5 +1,7 @@
-package by.ankudovich.contrioller;
+package by.ankudovich.contrioller.notProject;
 
+import by.ankudovich.entity.User;
+import by.ankudovich.repository.FileRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -7,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 public class DisplayServlet extends HttpServlet {
     @Override
@@ -21,6 +24,11 @@ public class DisplayServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    request.getRequestDispatcher("jsp/display.jsp").forward(request,response);
+        FileRepository repository = new FileRepository();
+        Collection<User> allUsers = repository.allUsers();
+
+        // Устанавливаем список всех пользователей как атрибут запроса
+        request.setAttribute("allUsers" , allUsers);
+    request.getRequestDispatcher("jsp/notProject/display.jsp").forward(request,response);
     }
 }

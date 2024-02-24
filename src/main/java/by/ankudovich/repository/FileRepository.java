@@ -33,6 +33,17 @@ public class FileRepository implements ShopRepository {
         return users;
     }
 
+    public boolean authentication(String login, String password){
+        for (User user: users) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+               return true;
+            }
+        }
+        return false;
+    }
+    public long userIdGenerator(){
+        return users.size()+1;
+    }
     private void serializeUser() {
         try {
             //Saving of object in a file
