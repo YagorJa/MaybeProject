@@ -20,21 +20,7 @@ public class DisplayServlet extends HttpServlet {
 
     }
 
-    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws  IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        String login = (String) request.getAttribute("login");
-        String password = (String) request.getAttribute("password");
-        String name = (String) request.getAttribute("name");
-        String surname = (String) request.getAttribute("surname");
-
-        out.println("<html><body>");
-        out.println("<h1>Введенные данные:</h1>");
-        out.println("Логин: " + login + "<br>");
-        out.println("Пароль: " + password + "<br>");
-        out.println("Имя: " + name + "<br>");
-        out.println("Фамилия: " + surname + "<br>");
-        out.println("</body></html>");
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    request.getRequestDispatcher("jsp/display.jsp").forward(request,response);
     }
 }

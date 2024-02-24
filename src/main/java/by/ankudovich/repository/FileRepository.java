@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class FileRepository implements ShopRepository {
-    private String filename = "C:\\tms\\TempDz4\\src\\main\\resources\\file.ser";
+    private final String filename = "C:\\tms\\TempDz4\\src\\main\\resources\\Users";
     private List<User> users;
     public FileRepository() {
         users = deserializeUser();
@@ -17,8 +17,10 @@ public class FileRepository implements ShopRepository {
     @Override
     public void add(User user) {
         users.add(user);
+
         serializeUser();
-    }
+        }
+
 
     @Override
     public void deleteById(long userId) {
@@ -59,8 +61,9 @@ public class FileRepository implements ShopRepository {
 
 
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException("файл не найден");
+//            throw new RuntimeException("файл не найден");
         }
+        return new ArrayList<>();
     }
 
 }
