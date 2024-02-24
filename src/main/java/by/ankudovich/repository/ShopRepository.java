@@ -6,7 +6,7 @@ import java.util.Collection;
 
 public interface ShopRepository {
     public void add(User user);
-    public void  deleteById(long userId);
+    public void deleteUserById(long userId);
     public Collection<User> allUsers();
 
 }
