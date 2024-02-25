@@ -7,37 +7,23 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.io.FileWriter;
 import java.io.IOException;
 
 public class RegistrationServlet extends HttpServlet {
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        FileRepository repository = (FileRepository) getServletContext().getAttribute("fileRepository");
 
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String surname = request.getParameter("surname");
-//
-//        User user = new User(1l,name,surname,login,password);
-//
-//        FileRepository repository = new FileRepository();
-//        repository.add(user);
-//
-        try (FileWriter writer = new FileWriter("C:\\tms\\TempDz4\\src\\main\\resources\\file.ser", true)) {
-            writer.write("Login: " + login + "\n");
-            writer.write("Password: " + password + "\n");
-            writer.write("Name: " + name + "\n");
-            writer.write("Surname: " + surname + "\n");
-            writer.write("-------------------\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        String name = req.getParameter("name");
+        String surname = req.getParameter("surname");
 
-        request.setAttribute("login", login);
-        request.setAttribute("password", password);
-        request.setAttribute("name", name);
-        request.setAttribute("surname", surname);
+        long id = repository.userIdGenerator();
 
-        request.getRequestDispatcher("/display").forward(request, response);
+        User user = new User(id,name,surname,login,password);
+        repository.add(user);
+
+        resp.sendRedirect("/jsp/register.jsp");
     }
 }
