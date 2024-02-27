@@ -43,9 +43,10 @@ public class LoginServlet extends HttpServlet {
 
         // Перенаправление на другую страницу в зависимости от результата аутентификации
         if (authentication) {
-            resp.sendRedirect("jsp/welcome.jsp"); // Перенаправление на страницу приветствия
+            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
+            // resp.sendRedirect("/jsp/welcome.jsp"); // Перенаправление на страницу приветствия
         } else {
-            resp.sendRedirect("jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
+            resp.sendRedirect("/jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
         }
     }
 }
