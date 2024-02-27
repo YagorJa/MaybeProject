@@ -1,5 +1,6 @@
 package by.ankudovich.contrioller;
 
+import by.ankudovich.entity.User;
 import by.ankudovich.repository.FileRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 public class LoginServlet extends HttpServlet {
     private FileRepository repository;
@@ -46,7 +48,8 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
             // resp.sendRedirect("/jsp/welcome.jsp"); // Перенаправление на страницу приветствия
         } else {
-            resp.sendRedirect("/jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+            //resp.sendRedirect("/jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
         }
     }
 }
