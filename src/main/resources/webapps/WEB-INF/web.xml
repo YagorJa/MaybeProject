@@ -64,5 +64,15 @@
         <url-pattern>/registerRedirect</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>by.ankudovich.contrioller.AddProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

@@ -40,16 +40,29 @@ public class LoginServlet extends HttpServlet {
         // Обработка введенных данных из формы входа
         String usernameLogin = req.getParameter("username");
         String passwordLgin = req.getParameter("password");
+try {
 
-        boolean authentication = repository.authentication(usernameLogin,passwordLgin);
+        User authentication = repository.authentication(usernameLogin,passwordLgin);
+        req.setAttribute("user", authentication);
+            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
+
+}catch (Exception exception ){
+    req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+}
+
+
+        // FileRepository repository = (FileRepository) getServletContext().getAttribute("fileRepository");
+      //  List<User> users=  repository.allUsers();
+
+// Передача списка пользователей в атрибуты запроса
+
 
         // Перенаправление на другую страницу в зависимости от результата аутентификации
-        if (authentication) {
-            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
-            // resp.sendRedirect("/jsp/welcome.jsp"); // Перенаправление на страницу приветствия
-        } else {
-            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
-            //resp.sendRedirect("/jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
-        }
+//        if (authentication) {
+//            // resp.sendRedirect("/jsp/welcome.jsp"); // Перенаправление на страницу приветствия
+//        } else {
+//            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+//            //resp.sendRedirect("/jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
+//        }
     }
 }

@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #d90b0b;
+            background-color: #b1b69a;
             margin: 0;
             padding: 0;
         }
@@ -51,7 +51,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #50ecc2;
         }
     </style>
 </head>

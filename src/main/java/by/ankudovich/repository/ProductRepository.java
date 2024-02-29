@@ -6,7 +6,6 @@ import by.ankudovich.repository.exception.ProductNotFound;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class ProductRepository implements ProductRepositoryInter {
@@ -33,7 +32,7 @@ public class ProductRepository implements ProductRepositoryInter {
     }
 
     @Override
-    public Collection<Product> allProducts() {
+    public List<Product> allProducts() {
         return products;
     }
 

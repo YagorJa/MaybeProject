@@ -29,17 +29,18 @@ public class FileRepository implements ShopRepository {
     }
 
     @Override
-    public Collection<User> allUsers() {
+    public List<User> allUsers() {
         return users;
     }
 
-    public boolean authentication(String login, String password){
+    public User authentication(String login, String password){
         for (User user: users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-               return true;
+               return user;
             }
         }
-        return false;
+        throw new RuntimeException("ПОльзователь с таким логином не найден");
+
     }
     public long userIdGenerator(){
         return users.size()+1;
