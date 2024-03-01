@@ -1,7 +1,7 @@
 package by.ankudovich.contrioller.notProject;
 
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.FileRepository;
+import by.ankudovich.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +20,7 @@ public class RegistrServlet extends HttpServlet {
 
         User user = new User(1l,name,surname,login,password);
 
-        FileRepository repository = new FileRepository();
+        UserRepository repository = new UserRepository();
         repository.add(user);
 
 

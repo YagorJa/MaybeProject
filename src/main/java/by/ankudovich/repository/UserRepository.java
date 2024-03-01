@@ -4,14 +4,13 @@ import by.ankudovich.entity.User;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
-public class FileRepository implements ShopRepository {
+public class UserRepository implements ShopRepository {
     private final String filename = "C:\\tms\\TempDz4\\src\\main\\resources\\Users";
     private List<User> users;
-    public FileRepository() {
+    public UserRepository() {
         users = deserializeUser();
     }
     @Override

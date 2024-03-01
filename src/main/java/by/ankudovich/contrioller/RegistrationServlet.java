@@ -1,7 +1,7 @@
 package by.ankudovich.contrioller;
 
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.FileRepository;
+import by.ankudovich.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +12,7 @@ import java.io.IOException;
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        FileRepository repository = (FileRepository) getServletContext().getAttribute("fileRepository");
+        UserRepository repository = (UserRepository) getServletContext().getAttribute("fileRepository");
 
         String login = req.getParameter("login");
         String password = req.getParameter("password");

@@ -1,14 +1,13 @@
 package by.ankudovich.contrioller.notProject;
 
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.FileRepository;
+import by.ankudovich.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 
 public class DisplayServlet extends HttpServlet {
@@ -24,7 +23,7 @@ public class DisplayServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        FileRepository repository = new FileRepository();
+        UserRepository repository = new UserRepository();
         Collection<User> allUsers = repository.allUsers();
 
         // Устанавливаем список всех пользователей как атрибут запроса

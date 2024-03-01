@@ -1,21 +1,20 @@
 package by.ankudovich.contrioller;
 
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.FileRepository;
+import by.ankudovich.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.List;
 
 public class LoginServlet extends HttpServlet {
-    private FileRepository repository;
+    private UserRepository repository;
 
     @Override
     public void init() throws ServletException {
-        repository = new FileRepository();
+        repository = new UserRepository();
         getServletContext().setAttribute("fileRepository", repository);
     } /* вобше песня,
      чтобы объект FileRepository использовался в нескольких сервлетах без создания нового экземпляра при каждом запросе,
@@ -51,18 +50,5 @@ try {
 }
 
 
-        // FileRepository repository = (FileRepository) getServletContext().getAttribute("fileRepository");
-      //  List<User> users=  repository.allUsers();
-
-// Передача списка пользователей в атрибуты запроса
-
-
-        // Перенаправление на другую страницу в зависимости от результата аутентификации
-//        if (authentication) {
-//            // resp.sendRedirect("/jsp/welcome.jsp"); // Перенаправление на страницу приветствия
-//        } else {
-//            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
-//            //resp.sendRedirect("/jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
-//        }
     }
 }

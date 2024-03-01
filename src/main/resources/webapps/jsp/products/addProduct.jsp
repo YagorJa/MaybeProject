@@ -58,7 +58,7 @@
 <body>
 <div class="container">
     <h1>Добавление товара</h1>
-    <form action="AddProductServlet" method="post">
+    <form action="/TempDz4/addProduct" method="post">
         <label for="id">ID товара:</label><br>
         <input type="text" id="id" name="id"><br>
 
