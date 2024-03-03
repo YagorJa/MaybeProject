@@ -20,8 +20,9 @@ public class RegistrationServlet extends HttpServlet {
         String surname = req.getParameter("surname");
 
         long id = repository.userIdGenerator();
+        User.Role role = repository.allUsers().isEmpty() ? User.Role.ADMIN : User.Role.USER;
 
-        User user = new User(id,name,surname,login,password);
+        User user = new User(id,name,surname,login,password,role);
         repository.add(user);
 
         resp.sendRedirect("/jsp/register.jsp");

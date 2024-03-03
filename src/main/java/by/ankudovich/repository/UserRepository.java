@@ -15,6 +15,14 @@ public class UserRepository implements ShopRepository {
     }
     @Override
     public void add(User user) {
+
+        List<User> users = allUsers();
+//        if (users.isEmpty()) {
+//            user.setRole(User.Role.ADMIN);
+//        }else {
+//            user.setRole(User.Role.USER);
+//        }
+
         users.add(user);
 
         serializeUser();
@@ -41,8 +49,13 @@ public class UserRepository implements ShopRepository {
         throw new RuntimeException("ПОльзователь с таким логином не найден");
 
     }
-    public long userIdGenerator(){
-        return users.size()+1;
+    public long userIdGenerator() {
+        long lastId = 0;
+        List<User> users = allUsers();
+        if (!users.isEmpty()) {
+            lastId = users.get(users.size() - 1).getId();
+        }
+        return lastId + 1;
     }
     private void serializeUser() {
         try {

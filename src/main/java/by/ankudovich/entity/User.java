@@ -7,11 +7,17 @@ import java.util.Objects;
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1938943395555343944L;
-    public Long id;
-    public String name;
-    public String surname;
-    public String login;
-    public String password;
+    private Long id;
+    private String name;
+    private String surname;
+    private String login;
+    private String password;
+    private Role role;
+
+    public enum Role {
+        ADMIN, USER
+    }
+
 
     public Long getId() {
         return id;
@@ -52,13 +58,21 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    public Role getRole() {
+        return role;
+    }
 
-    public User(Long id, String name, String surname, String login, String password) {
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public User(Long id, String name, String surname, String login, String password, Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
+        this.role = role;
     }
 
     public User() {
@@ -85,7 +99,7 @@ public class User implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
-    }     //тестинг есть ли пользователи в файле
-
+    }
 }
