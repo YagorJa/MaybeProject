@@ -84,4 +84,22 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>welcome</servlet-name>
+        <jsp-file>/jsp/welcome.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>welcome</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+<servlet>
+    <servlet-name>EditProfileServlet</servlet-name>
+    <servlet-class>by.ankudovich.contrioller.user.EditProfileServlet</servlet-class>
+</servlet>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/editProfile</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -5,6 +5,8 @@ import by.ankudovich.entity.User;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 public class UserRepository implements ShopRepository {
@@ -57,6 +59,35 @@ public class UserRepository implements ShopRepository {
         }
         return lastId + 1;
     }
+
+    public void updateUser(long id, String newName, String newSurname, String newLogin, String newPassword) {
+        Optional<User> userOptional = users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            if (newName != null) {
+                user.setName(newName);
+            }
+            if (newSurname != null) {
+                user.setSurname(newSurname);
+            }
+            if (newLogin != null) {
+                user.setLogin(newLogin);
+            }
+            if (newPassword != null) {
+                user.setPassword(newPassword);
+            }
+        } else {
+            throw new RuntimeException("Пользователь с таким идентификатором не найден");
+        }
+
+        serializeUser();
+    }
+
+
     private void serializeUser() {
         try {
             //Saving of object in a file

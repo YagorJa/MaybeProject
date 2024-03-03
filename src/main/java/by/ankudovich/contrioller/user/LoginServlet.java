@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -29,9 +30,10 @@ public class LoginServlet extends HttpServlet {
 
     Таким образом, в каждом следующем сервлете я можгу получить доступ к тому же экземпляру FileRepository, который был создан тут  мной
     */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("jsp/login.jsp").forward(req,resp);
+        req.getRequestDispatcher("jsp/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -39,15 +41,20 @@ public class LoginServlet extends HttpServlet {
         // Обработка введенных данных из формы входа
         String usernameLogin = req.getParameter("username");
         String passwordLgin = req.getParameter("password");
-try {
+        try {
 
-        User authentication = repository.authentication(usernameLogin,passwordLgin);
-        req.setAttribute("user", authentication);
+            User authentication = repository.authentication(usernameLogin, passwordLgin);// здесь лежит конкретный юзер которого я пробрасываю дальше
+
+            // Успешная аутентификация: сохраняем идентификатор пользователя в сессии
+            HttpSession session = req.getSession();
+            session.setAttribute("userId", authentication.getId());
+
+            req.setAttribute("user", authentication);
             req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
 
-}catch (Exception exception ){
-    req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
-}
+        } catch (Exception exception) {
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+        }
 
 
     }
