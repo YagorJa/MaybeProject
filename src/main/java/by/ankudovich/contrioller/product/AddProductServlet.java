@@ -1,4 +1,4 @@
-package by.ankudovich.contrioller;
+package by.ankudovich.contrioller.product;
 
 import by.ankudovich.entity.Product;
 import by.ankudovich.repository.ProductRepository;

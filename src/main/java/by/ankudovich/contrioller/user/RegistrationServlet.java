@@ -1,4 +1,4 @@
-package by.ankudovich.contrioller;
+package by.ankudovich.contrioller.user;
 
 import by.ankudovich.entity.User;
 import by.ankudovich.repository.UserRepository;
