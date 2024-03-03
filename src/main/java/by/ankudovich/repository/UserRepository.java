@@ -4,18 +4,25 @@ import by.ankudovich.entity.User;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
-public class FileRepository implements ShopRepository {
+public class UserRepository implements ShopRepository {
     private final String filename = "C:\\tms\\TempDz4\\src\\main\\resources\\Users";
     private List<User> users;
-    public FileRepository() {
+    public UserRepository() {
         users = deserializeUser();
     }
     @Override
     public void add(User user) {
+
+        List<User> users = allUsers();
+//        if (users.isEmpty()) {
+//            user.setRole(User.Role.ADMIN);
+//        }else {
+//            user.setRole(User.Role.USER);
+//        }
+
         users.add(user);
 
         serializeUser();
@@ -23,26 +30,32 @@ public class FileRepository implements ShopRepository {
 
 
     @Override
-    public void deleteById(long userId) {
+    public void deleteUserById(long userId) {
         users.removeIf(userOk -> userOk.getId().equals(userId));
         serializeUser();
     }
 
     @Override
-    public Collection<User> allUsers() {
+    public List<User> allUsers() {
         return users;
     }
 
-    public boolean authentication(String login, String password){
+    public User authentication(String login, String password){
         for (User user: users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-               return true;
+               return user;
             }
         }
-        return false;
+        throw new RuntimeException("ПОльзователь с таким логином не найден");
+
     }
-    public long userIdGenerator(){
-        return users.size()+1;
+    public long userIdGenerator() {
+        long lastId = 0;
+        List<User> users = allUsers();
+        if (!users.isEmpty()) {
+            lastId = users.get(users.size() - 1).getId();
+        }
+        return lastId + 1;
     }
     private void serializeUser() {
         try {
