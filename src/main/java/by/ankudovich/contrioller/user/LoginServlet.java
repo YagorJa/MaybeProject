@@ -1,19 +1,21 @@
-package by.ankudovich.contrioller;
+package by.ankudovich.contrioller.user;
 
-import by.ankudovich.repository.FileRepository;
+import by.ankudovich.entity.User;
+import by.ankudovich.repository.UserRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
-    private FileRepository repository;
+    private UserRepository repository;
 
     @Override
     public void init() throws ServletException {
-        repository = new FileRepository();
+        repository = new UserRepository();
         getServletContext().setAttribute("fileRepository", repository);
     } /* вобше песня,
      чтобы объект FileRepository использовался в нескольких сервлетах без создания нового экземпляра при каждом запросе,
@@ -28,9 +30,10 @@ public class LoginServlet extends HttpServlet {
 
     Таким образом, в каждом следующем сервлете я можгу получить доступ к тому же экземпляру FileRepository, который был создан тут  мной
     */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("jsp/login.jsp").forward(req,resp);
+        req.getRequestDispatcher("jsp/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -38,14 +41,21 @@ public class LoginServlet extends HttpServlet {
         // Обработка введенных данных из формы входа
         String usernameLogin = req.getParameter("username");
         String passwordLgin = req.getParameter("password");
+        try {
 
-        boolean authentication = repository.authentication(usernameLogin,passwordLgin);
+            User authentication = repository.authentication(usernameLogin, passwordLgin);// здесь лежит конкретный юзер которого я пробрасываю дальше
 
-        // Перенаправление на другую страницу в зависимости от результата аутентификации
-        if (authentication) {
-            resp.sendRedirect("jsp/welcome.jsp"); // Перенаправление на страницу приветствия
-        } else {
-            resp.sendRedirect("jsp/error.jsp"); // Перенаправление на страницу ошибки аутентификации
+            // Успешная аутентификация: сохраняем идентификатор пользователя в сессии
+            HttpSession session = req.getSession();
+            session.setAttribute("userId", authentication.getId());
+
+            req.setAttribute("user", authentication);
+            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
+
+        } catch (Exception exception) {
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
         }
+
+
     }
 }
