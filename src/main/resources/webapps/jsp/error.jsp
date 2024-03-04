@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Error Page</title>
     <style>
+        img {
+            border-radius:15px}
         body {
             font-family: Arial, sans-serif;
             background-color: #f8d7da; /* Цвет фона - светло-красный */
@@ -30,6 +32,9 @@
 <body>
 <h1>Error</h1>
 <p>Invalid username or password. Please try again.</p>
-<span class="emoji">😢</span> <!-- Грустный смайлик -->
+<span class="emoji">😢</span>
+<br>
+<%--<img src="https://wallpapers.com/images/hd/sad-stitch-a4h8l2wekd65600r.jpg" alt="Грустный смайлик">--%>
+<img src="../images/sad_stitch.png" alt="Грустный смайлик">
 </body>
 </html>
