@@ -10,9 +10,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class RegistrationServlet extends HttpServlet {
-        UserRepository repository = (UserRepository) getServletContext().getAttribute("fileRepository");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+     req.getRequestDispatcher("/jsp/registr.jsp");
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserRepository repository = (UserRepository) getServletContext().getAttribute("fileRepository");
 
         String login = req.getParameter("login");
         String password = req.getParameter("password");
@@ -26,7 +31,6 @@ public class RegistrationServlet extends HttpServlet {
         repository.add(user);
 
         req.setAttribute("user", user);
-        req.getRequestDispatcher("/welcome").forward(req, resp);
-        //resp.sendRedirect("/welcome");
+        req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
     }
 }

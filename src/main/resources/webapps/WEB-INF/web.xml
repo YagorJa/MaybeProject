@@ -48,11 +48,12 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>by.ankudovich.contrioller.user.LoginServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/jsp/login</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -100,6 +101,15 @@
     <servlet-mapping>
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/editProfile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DisplayProductServlet</servlet-name>
+        <servlet-class>by.ankudovich.contrioller.product.DisplayProdcutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DisplayProductServlet</servlet-name>
+        <url-pattern>/display-pr</url-pattern>
     </servlet-mapping>
 
 </web-app>
