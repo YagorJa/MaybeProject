@@ -34,7 +34,7 @@
 <p>Invalid username or password. Please try again.</p>
 <span class="emoji">😢</span>
 <br>
-<%--<img src="https://wallpapers.com/images/hd/sad-stitch-a4h8l2wekd65600r.jpg" alt="Грустный смайлик">--%>
-<img src="../images/sad_stitch.png" alt="Грустный смайлик">
+<img src="https://wallpapers.com/images/hd/sad-stitch-a4h8l2wekd65600r.jpg" alt="Грустный смайлик">
+<%--<img src="../../images/sad_stitch.png" alt="Грустный смайлик">--%>
 </body>
 </html>
