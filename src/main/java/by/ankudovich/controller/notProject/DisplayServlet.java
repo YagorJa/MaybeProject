@@ -1,7 +1,7 @@
-package by.ankudovich.contrioller.notProject;
+package by.ankudovich.controller.notProject;
 
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.UserRepository;
+import by.ankudovich.repository.UserFileRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ public class DisplayServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UserRepository repository = new UserRepository();
+        UserFileRepository repository = new UserFileRepository();
         Collection<User> allUsers = repository.allUsers();
 
         // Устанавливаем список всех пользователей как атрибут запроса

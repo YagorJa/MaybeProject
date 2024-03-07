@@ -1,7 +1,9 @@
-package by.ankudovich.contrioller.user;
+package by.ankudovich.controller.user;
 
+import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.UserRepository;
+import by.ankudovich.repository.UserFileRepository;
+import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,12 +13,14 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
-    private UserRepository repository;
+    private UserFileRepository repository;
+    private UserService userService;
 
     @Override
     public void init() throws ServletException {
-        repository = new UserRepository();
-        getServletContext().setAttribute("fileRepository", repository);
+        repository = new UserFileRepository();
+        userService=new UserService();
+        getServletContext().setAttribute("fileRepository", userService);
     } /* вобше песня,
      чтобы объект FileRepository использовался в нескольких сервлетах без создания нового экземпляра при каждом запросе,
      можно использовать механизмы управления состоянием веб-приложения, такие как контекст сервлета (Servlet Context).
@@ -43,6 +47,7 @@ public class LoginServlet extends HttpServlet {
         String passwordLgin = req.getParameter("password");
         try {
 
+          //  UserResponse userResponse=userService.authentication(usernameLogin,passwordLgin);
             User authentication = repository.authentication(usernameLogin, passwordLgin);// здесь лежит конкретный юзер которого я пробрасываю дальше
 
             // Успешная аутентификация: сохраняем идентификатор пользователя в сессии

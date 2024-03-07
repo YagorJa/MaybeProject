@@ -1,7 +1,6 @@
 package by.ankudovich.repository;
 
 import by.ankudovich.entity.Product;
-import by.ankudovich.entity.User;
 import by.ankudovich.repository.exception.ProductNotFound;
 
 import java.io.*;

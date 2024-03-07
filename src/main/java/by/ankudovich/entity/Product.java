@@ -1,5 +1,6 @@
 package by.ankudovich.entity;
 
+import by.ankudovich.enums.ProductRole;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -12,13 +13,14 @@ public class Product implements Serializable {
     private String nameOfProduct;
     private double price;
     private long quantity;
-    public enum PRODUCT {
-        FRUIT,
-        VEGETABLE,
-        MEAT,
-        DAIRY,
-        BEER
-    }
+    private ProductRole.PRODUCT typeOfProduct;
+//    public enum PRODUCT {
+//        FRUIT,
+//        VEGETABLE,
+//        MEAT,
+//        DAIRY,
+//        BEER
+//    }
 
     public Product(Long id, Long codeOfProduct, String nameOfProduct, double price, long quantity) {
         this.id = id;
@@ -26,6 +28,18 @@ public class Product implements Serializable {
         this.nameOfProduct = nameOfProduct;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public Product(Long id, Long codeOfProduct, String nameOfProduct, double price, long quantity, ProductRole.PRODUCT typeOfProduct) {
+        this.id = id;
+        this.codeOfProduct = codeOfProduct;
+        this.nameOfProduct = nameOfProduct;
+        this.price = price;
+        this.quantity = quantity;
+        this.typeOfProduct = typeOfProduct;
+    }
+
+    public Product() {
     }
 
     @Override

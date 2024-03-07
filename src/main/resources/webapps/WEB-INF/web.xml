@@ -7,7 +7,7 @@
          metadata-complete="true">
 <servlet>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>by.ankudovich.contrioller.notProject.UserServlet</servlet-class>
+    <servlet-class>by.ankudovich.controller.notProject.UserServlet</servlet-class>
 </servlet>
 
     <servlet-mapping>
@@ -17,7 +17,7 @@
 
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>by.ankudovich.contrioller.user.RegistrationServlet</servlet-class>
+        <servlet-class>by.ankudovich.controller.user.RegistrationServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -27,7 +27,7 @@
 
     <servlet>
         <servlet-name>Display</servlet-name>
-        <servlet-class>by.ankudovich.contrioller.notProject.DisplayServlet</servlet-class>
+        <servlet-class>by.ankudovich.controller.notProject.DisplayServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -47,7 +47,7 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>by.ankudovich.contrioller.user.LoginServlet</servlet-class>
+        <servlet-class>by.ankudovich.controller.user.LoginServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
 
@@ -67,7 +67,7 @@
 
     <servlet>
         <servlet-name>RegisterRedirectServlet</servlet-name>
-        <servlet-class>by.ankudovich.contrioller.user.RegisterRedirectServlet</servlet-class>
+        <servlet-class>by.ankudovich.controller.user.RegisterRedirectServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterRedirectServlet</servlet-name>
@@ -76,7 +76,7 @@
 
     <servlet>
         <servlet-name>AddProductServlet</servlet-name>
-        <servlet-class>by.ankudovich.contrioller.product.AddProductServlet</servlet-class>
+        <servlet-class>by.ankudovich.controller.product.AddProductServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -96,7 +96,7 @@
 
 <servlet>
     <servlet-name>EditProfileServlet</servlet-name>
-    <servlet-class>by.ankudovich.contrioller.user.EditProfileServlet</servlet-class>
+    <servlet-class>by.ankudovich.controller.user.EditProfileServlet</servlet-class>
 </servlet>
     <servlet-mapping>
         <servlet-name>EditProfileServlet</servlet-name>
@@ -105,7 +105,7 @@
 
     <servlet>
         <servlet-name>DisplayProductServlet</servlet-name>
-        <servlet-class>by.ankudovich.contrioller.product.DisplayProdcutServlet</servlet-class>
+        <servlet-class>by.ankudovich.controller.product.DisplayProdcutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DisplayProductServlet</servlet-name>

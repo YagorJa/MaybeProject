@@ -1,5 +1,7 @@
 package by.ankudovich.entity;
 
+import by.ankudovich.enums.UserRole;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,11 +14,7 @@ public class User implements Serializable {
     private String surname;
     private String login;
     private String password;
-    private Role role;
-
-    public enum Role {
-        ADMIN, USER
-    }
+    private UserRole.Role role;
 
 
     public Long getId() {
@@ -58,21 +56,24 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public Role getRole() {
+    public UserRole.Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRole.Role role) {
         this.role = role;
     }
 
-    public User(Long id, String name, String surname, String login, String password, Role role) {
+    public User(Long id, String name, String surname, String login, String password, UserRole.Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
         this.role = role;
+    }
+
+    public User(String name, String surname, String login, String password, UserRole.Role role) {
     }
 
     public User() {
