@@ -44,7 +44,7 @@
 <body>
 <div class="container">
     <h2>Поиск товара</h2>
-    <form action="search" method="get">
+    <form action="http://localhost:8090/TempDz4/find" method="post">
         <label for="productId">Введите ID товара:</label>
         <input type="text" id="productId" name="productId" required>
         <button type="submit">Поиск</button>

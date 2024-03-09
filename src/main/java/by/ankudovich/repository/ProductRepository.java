@@ -18,11 +18,21 @@ public class ProductRepository implements ProductRepositoryInter {
 
     @Override
     public void add(Product product) {
+        long id = productIdGenerator();
+        product.setId(id);
         products.add(product);
 
         serealizeProduct();
     }
 
+public long productIdGenerator(){
+        long lastId = 0;
+        List<Product> products = allProducts();
+    if (!products.isEmpty()) {
+       lastId = products.get(products.size() - 1).getId();
+    }
+    return lastId + 1;
+}
 
     @Override
     public void deleteProductById(long productId) {

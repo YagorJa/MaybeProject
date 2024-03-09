@@ -17,9 +17,9 @@ public class ProductMapper {
     }
 
     //метод для работы с полями из фронта
-    public Product toEntity (ProductRequest productRequest){
-       Product product = new Product();
-       product.setId(productRequest.getId());
-        return product ;
-    }
+//    public Product toEntity (ProductRequest productRequest){
+//       Product product = new Product();
+//       product.setId(productRequest.getId());
+//        return product ;
+//    }
 }

@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         repository = new UserFileRepository();
-        userService=new UserService();
+        userService=new UserService(repository);
         getServletContext().setAttribute("fileRepository", userService);
     } /* вобше песня,
      чтобы объект FileRepository использовался в нескольких сервлетах без создания нового экземпляра при каждом запросе,

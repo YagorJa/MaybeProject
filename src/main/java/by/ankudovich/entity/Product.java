@@ -14,13 +14,6 @@ public class Product implements Serializable {
     private double price;
     private long quantity;
     private ProductRole.PRODUCT typeOfProduct;
-//    public enum PRODUCT {
-//        FRUIT,
-//        VEGETABLE,
-//        MEAT,
-//        DAIRY,
-//        BEER
-//    }
 
     public Product(Long id, Long codeOfProduct, String nameOfProduct, double price, long quantity) {
         this.id = id;
@@ -38,6 +31,16 @@ public class Product implements Serializable {
         this.quantity = quantity;
         this.typeOfProduct = typeOfProduct;
     }
+
+    public Product(Long codeOfProduct, String nameOfProduct, double price, long quantity, ProductRole.PRODUCT typeOfProduct) {
+        this.codeOfProduct = codeOfProduct;
+        this.nameOfProduct = nameOfProduct;
+        this.price = price;
+        this.quantity = quantity;
+        this.typeOfProduct = typeOfProduct;
+    }
+
+
 
     public Product() {
     }
@@ -63,6 +66,7 @@ public class Product implements Serializable {
                 ", nameOfProduct='" + nameOfProduct + '\'' +
                 ", price=" + price +
                 ", quantity=" + quantity +
+                ", typeOfProduct=" + typeOfProduct +
                 '}';
     }
 }

@@ -5,6 +5,7 @@ import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.enums.UserRole;
 import by.ankudovich.entity.User;
 import by.ankudovich.repository.UserFileRepository;
+import by.ankudovich.repository.UserRepository;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -22,7 +23,10 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        UserFileRepository repository = (UserFileRepository) getServletContext().getAttribute("fileRepository");
-        UserService userService=new UserService();
+        UserRepository userRepository = new UserFileRepository();
+
+        // Передача UserRepository в конструктор UserService
+        UserService userService = new UserService(userRepository);
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String name = req.getParameter("name");

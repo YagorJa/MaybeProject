@@ -59,14 +59,20 @@
 <div class="container">
     <h1>Добавление товара</h1>
     <form action="/TempDz4/addProduct" method="post">
-        <label for="id">ID товара:</label><br>
-        <input type="text" id="id" name="id"><br>
-
         <label for="code">Код товара:</label><br>
         <input type="text" id="code" name="code"><br>
 
         <label for="name">Наименование товара:</label><br>
         <input type="text" id="name" name="name"><br>
+
+        <label for="type">Тип продукта:</label><br>
+        <select id="type" name="type">
+            <option value="FRUIT">Фрукты</option>
+            <option value="VEGETABLE">Овощи</option>
+            <option value="MEAT">Мясо</option>
+            <option value="DAIRY">Молочные продукты</option>
+            <option value="BEER">Пиво</option>
+        </select><br><br>
 
         <label for="price">Стоимость товара:</label><br>
         <input type="text" id="price" name="price"><br>

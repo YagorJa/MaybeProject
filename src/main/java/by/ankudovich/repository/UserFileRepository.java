@@ -19,7 +19,7 @@ public class UserFileRepository implements UserRepository {
 
         long id=userIdGenerator();
         user.setId(id);
-        List<User> users = allUsers();
+//        List<User> users = allUsers();
 //        if (users.isEmpty()) {
 //            user.setRole(User.Role.ADMIN);
 //        }else {
