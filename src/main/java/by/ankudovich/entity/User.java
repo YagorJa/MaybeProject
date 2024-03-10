@@ -1,5 +1,7 @@
 package by.ankudovich.entity;
 
+import by.ankudovich.enums.UserRole;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,11 +9,13 @@ import java.util.Objects;
 public class User implements Serializable {
     @Serial
     private static final long serialVersionUID = 1938943395555343944L;
-    public Long id;
-    public String name;
-    public String surname;
-    public String login;
-    public String password;
+    private Long id;
+    private String name;
+    private String surname;
+    private String login;
+    private String password;
+    private UserRole.Role role;
+
 
     public Long getId() {
         return id;
@@ -52,13 +56,27 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    public UserRole.Role getRole() {
+        return role;
+    }
 
-    public User(Long id, String name, String surname, String login, String password) {
+    public void setRole(UserRole.Role role) {
+        this.role = role;
+    }
+
+    public User(Long id, String name, String surname, String login, String password, UserRole.Role role) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
+        this.role = role;
+    }
+
+    public User(String name, String surname, String login, String password, UserRole.Role role) {
+    }
+
+    public User() {
     }
 
     @Override
@@ -82,7 +100,7 @@ public class User implements Serializable {
                 ", surname='" + surname + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
                 '}';
-    }     //тестинг есть ли пользователи в файле
-
+    }
 }

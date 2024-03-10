@@ -1,4 +1,4 @@
-package by.ankudovich.contrioller;
+package by.ankudovich.controller.user;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

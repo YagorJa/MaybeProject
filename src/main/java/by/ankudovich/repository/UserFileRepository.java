@@ -4,46 +4,88 @@ import by.ankudovich.entity.User;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 
-public class FileRepository implements ShopRepository {
+public class UserFileRepository implements UserRepository {
     private final String filename = "C:\\tms\\TempDz4\\src\\main\\resources\\Users";
     private List<User> users;
-    public FileRepository() {
+    public UserFileRepository() {
         users = deserializeUser();
     }
     @Override
-    public void add(User user) {
+    public User add(User user) {
+
+        long id=userIdGenerator();
+        user.setId(id);
+
         users.add(user);
 
         serializeUser();
+        return user;
         }
 
 
     @Override
-    public void deleteById(long userId) {
+    public void deleteUserById(long userId) {
         users.removeIf(userOk -> userOk.getId().equals(userId));
         serializeUser();
     }
 
     @Override
-    public Collection<User> allUsers() {
+    public List<User> allUsers() {
         return users;
     }
-
-    public boolean authentication(String login, String password){
+    @Override
+    public User authentication(String login, String password){
         for (User user: users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-               return true;
+               return user;
             }
         }
-        return false;
+        throw new RuntimeException("ПОльзователь с таким логином не найден");
+
     }
-    public long userIdGenerator(){
-        return users.size()+1;
+    @Override
+    public long userIdGenerator() {
+        long lastId = 0;
+        List<User> users = allUsers();
+        if (!users.isEmpty()) {
+            lastId = users.get(users.size() - 1).getId();
+        }
+        return lastId + 1;
     }
+
+    @Override
+    public void updateUser(long id, String newName, String newSurname, String newLogin, String newPassword) {
+        Optional<User> userOptional = users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            if (newName != null) {
+                user.setName(newName);
+            }
+            if (newSurname != null) {
+                user.setSurname(newSurname);
+            }
+            if (newLogin != null) {
+                user.setLogin(newLogin);
+            }
+            if (newPassword != null) {
+                user.setPassword(newPassword);
+            }
+        } else {
+            throw new RuntimeException("Пользователь с таким идентификатором не найден");
+        }
+
+        serializeUser();
+    }
+
+
     private void serializeUser() {
         try {
             //Saving of object in a file

@@ -1,17 +1,17 @@
-package by.ankudovich.contrioller.notProject;
+package by.ankudovich.controller.product;
 
-import by.ankudovich.entity.User;
-import by.ankudovich.repository.FileRepository;
+import by.ankudovich.entity.Product;
+import by.ankudovich.repository.ProductRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.List;
 
-public class DisplayServlet extends HttpServlet {
+public class DisplayProdcutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
@@ -24,11 +24,11 @@ public class DisplayServlet extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        FileRepository repository = new FileRepository();
-        Collection<User> allUsers = repository.allUsers();
+        ProductRepository productRepository = new ProductRepository();
+        List<Product> allProducts = productRepository.allProducts();
 
         // Устанавливаем список всех пользователей как атрибут запроса
-        request.setAttribute("allUsers" , allUsers);
-    request.getRequestDispatcher("jsp/notProject/display.jsp").forward(request,response);
+        request.setAttribute("allProducts", allProducts);
+        request.getRequestDispatcher("jsp/products/displayProducts.jsp").forward(request, response);
     }
 }
