@@ -17,7 +17,7 @@ import java.io.IOException;
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     req.getRequestDispatcher("/jsp/registr.jsp");
+     req.getRequestDispatcher("/jsp/user/registr.jsp");
     }
 
     @Override
@@ -25,7 +25,6 @@ public class RegistrationServlet extends HttpServlet {
 //        UserFileRepository userRepository = (UserFileRepository) getServletContext().getAttribute("fileRepository");
         UserRepository userRepository = new UserFileRepository();
 
-        // Передача UserRepository в конструктор UserService
         UserService userService = new UserService(userRepository);
         String login = req.getParameter("login");
         String password = req.getParameter("password");
@@ -36,10 +35,10 @@ public class RegistrationServlet extends HttpServlet {
         try {
             UserResponse userResponse = userService.register(userRequest);
             req.setAttribute("user", userResponse);
-            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/user/welcome.jsp").forward(req, resp);
         } catch (RuntimeException e) {
             req.setAttribute("errorMessage", e.getMessage());
-            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
         }
 
     }

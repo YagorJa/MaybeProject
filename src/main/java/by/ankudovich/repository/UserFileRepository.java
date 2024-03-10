@@ -38,7 +38,6 @@ public class UserFileRepository implements UserRepository {
         return users;
     }
     @Override
-
     public User authentication(String login, String password){
         for (User user: users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {

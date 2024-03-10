@@ -9,7 +9,7 @@ import by.ankudovich.repository.UserRepository;
 
 import java.util.List;
 
-public class UserService  {
+public class UserService {
 
     private UserRepository userRepository;
 
@@ -20,9 +20,8 @@ public class UserService  {
     public UserResponse register(UserRequest userRequest) {
         String login = userRequest.getLogin();
 
-
         if (isLoginOccupied(login)) {
-           throw new RuntimeException("Логин такой занят");
+            throw new RuntimeException("Логин такой занят");
         }
 
         UserMapper userMapper = new UserMapper();
@@ -38,13 +37,26 @@ public class UserService  {
         List<User> allUsers = (List<User>) userRepository.allUsers();
         for (User user : allUsers) {
             if (user.getLogin().equals(login)) {
-                return true; // Логин занят
+                return true;
             }
         }
-        return false; // Логин свободен
+        return false;
     }
 
     public void updateUser(long currentUserId, String name, String surname, String login, String password) {
-        userRepository.updateUser(currentUserId,name,surname,login,password);
+        userRepository.updateUser(currentUserId, name, surname, login, password);
     }
+
+    public UserResponse authentication(String login, String password) {
+        List<User> users = (List<User>) userRepository.allUsers();
+        UserMapper userMapper = new UserMapper();
+        for (User user : users) {
+            if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
+                return userMapper.toUserResponse(user);
+            }
+        }
+            throw new RuntimeException("ПОльзователь с таким логином не найден");
+
+        }
+
 }

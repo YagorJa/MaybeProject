@@ -14,7 +14,7 @@ public class EditProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/edit.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/user/edit.jsp").forward(req, resp);
     }
 
     @Override
@@ -36,9 +36,9 @@ public class EditProfileServlet extends HttpServlet {
 
             repository.updateUser(currentUserId, name, surname, login, password);
 
-        req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/user/login.jsp").forward(req, resp);
         }else {
-            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
         }
     }
 
