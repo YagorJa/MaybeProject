@@ -17,12 +17,13 @@ public class ProductRepository implements ProductRepositoryInter {
     }
 
     @Override
-    public void add(Product product) {
+    public Product add(Product product) {
         long id = productIdGenerator();
         product.setId(id);
         products.add(product);
 
         serealizeProduct();
+        return product;
     }
 
 public long productIdGenerator(){

@@ -60,6 +60,8 @@
     </tr>
 
 
+
+    <jsp:useBean id="allProducts" scope="request" type="java.util.List"/>
     <c:forEach items="${allProducts}" var="product">
         <tr>
             <td>${product.id}</td>
