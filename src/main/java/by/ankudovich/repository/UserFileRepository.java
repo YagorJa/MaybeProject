@@ -19,12 +19,6 @@ public class UserFileRepository implements UserRepository {
 
         long id=userIdGenerator();
         user.setId(id);
-//        List<User> users = allUsers();
-//        if (users.isEmpty()) {
-//            user.setRole(User.Role.ADMIN);
-//        }else {
-//            user.setRole(User.Role.USER);
-//        }
 
         users.add(user);
 
@@ -43,6 +37,7 @@ public class UserFileRepository implements UserRepository {
     public List<User> allUsers() {
         return users;
     }
+    @Override
 
     public User authentication(String login, String password){
         for (User user: users) {
@@ -53,6 +48,7 @@ public class UserFileRepository implements UserRepository {
         throw new RuntimeException("ПОльзователь с таким логином не найден");
 
     }
+    @Override
     public long userIdGenerator() {
         long lastId = 0;
         List<User> users = allUsers();
@@ -62,6 +58,7 @@ public class UserFileRepository implements UserRepository {
         return lastId + 1;
     }
 
+    @Override
     public void updateUser(long id, String newName, String newSurname, String newLogin, String newPassword) {
         Optional<User> userOptional = users.stream()
                 .filter(user -> user.getId() == id)

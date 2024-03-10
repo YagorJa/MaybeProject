@@ -22,7 +22,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        UserFileRepository repository = (UserFileRepository) getServletContext().getAttribute("fileRepository");
+//        UserFileRepository userRepository = (UserFileRepository) getServletContext().getAttribute("fileRepository");
         UserRepository userRepository = new UserFileRepository();
 
         // Передача UserRepository в конструктор UserService
@@ -32,14 +32,15 @@ public class RegistrationServlet extends HttpServlet {
         String name = req.getParameter("name");
         String surname = req.getParameter("surname");
 
-//        long id = repository.userIdGenerator();
-//        UserRole.Role role = repository.allUsers().isEmpty() ? UserRole.Role.ADMIN : UserRole.Role.USER;
-
-//        User user = new User(name,surname,login,password,role);
         UserRequest userRequest = new UserRequest(name,surname,login,password);
-        UserResponse userResponse=userService.register(userRequest);
+        try {
+            UserResponse userResponse = userService.register(userRequest);
+            req.setAttribute("user", userResponse);
+            req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
+        } catch (RuntimeException e) {
+            req.setAttribute("errorMessage", e.getMessage());
+            req.getRequestDispatcher("/jsp/error.jsp").forward(req, resp);
+        }
 
-        req.setAttribute("user", userResponse);
-        req.getRequestDispatcher("/jsp/welcome.jsp").forward(req, resp);
     }
 }

@@ -9,7 +9,7 @@ import by.ankudovich.repository.UserRepository;
 
 import java.util.List;
 
-public class UserService {
+public class UserService  {
 
     private UserRepository userRepository;
 
@@ -20,9 +20,9 @@ public class UserService {
     public UserResponse register(UserRequest userRequest) {
         String login = userRequest.getLogin();
 
-        // Проверяем, свободен ли логин
+
         if (isLoginOccupied(login)) {
-           throw new RuntimeException("занято");
+           throw new RuntimeException("Логин такой занят");
         }
 
         UserMapper userMapper = new UserMapper();
@@ -42,5 +42,9 @@ public class UserService {
             }
         }
         return false; // Логин свободен
+    }
+
+    public void updateUser(long currentUserId, String name, String surname, String login, String password) {
+        userRepository.updateUser(currentUserId,name,surname,login,password);
     }
 }

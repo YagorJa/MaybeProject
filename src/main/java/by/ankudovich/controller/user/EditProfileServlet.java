@@ -1,6 +1,7 @@
 package by.ankudovich.controller.user;
 
 import by.ankudovich.repository.UserFileRepository;
+import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class EditProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserFileRepository repository = (UserFileRepository) getServletContext().getAttribute("fileRepository");
+        UserService repository = (UserService) getServletContext().getAttribute("fileRepository");
 
         HttpSession session = req.getSession();
 
