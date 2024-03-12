@@ -71,7 +71,7 @@
 
 <script>
     document.querySelector('.create-new').addEventListener('click', function() {
-        window.location.href = '/jsp/login.jsp';
+        window.location.href = '/jsp/login.jsp'; // мб тут надо доьавит папку юзер
     });
 </script>
 
