@@ -3,6 +3,8 @@ package by.ankudovich.controller.user;
 import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 import by.ankudovich.repository.UserFileRepository;
+import by.ankudovich.repository.UserRepository;
+import by.ankudovich.repository.UserRepositoryJDBC;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,13 +15,13 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginServlet extends HttpServlet {
-    private UserFileRepository repository;
+    private UserRepository repository;
     private UserService userService;
 
     @Override
     public void init() throws ServletException {
-        repository = new UserFileRepository();
-        userService=new UserService(repository);
+        repository = new UserRepositoryJDBC();
+        userService=new UserService();
         getServletContext().setAttribute("fileRepository", userService);
     }
 

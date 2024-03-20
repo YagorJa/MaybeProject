@@ -17,4 +17,7 @@ public class UserRequest {
         this.password = password;
     }
 
+    public UserRequest() {
+
+    }
 }

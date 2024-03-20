@@ -5,15 +5,17 @@ import by.ankudovich.api.Product.ProductResponse;
 import by.ankudovich.entity.Product;
 import by.ankudovich.mapper.ProductMapper;
 import by.ankudovich.repository.ProductRepository;
+import by.ankudovich.repository.ProductRepositoryInter;
+import by.ankudovich.repository.ProductRepositoryJDBC;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
-    private ProductRepository productRepository;
+    private ProductRepositoryInter productRepository;
 
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+    public ProductService() {
+        this.productRepository = new ProductRepositoryJDBC();
     }
     public ProductResponse add(ProductRequest productRequest) {
         ProductMapper productMapper = new ProductMapper();
@@ -23,7 +25,7 @@ public class ProductService {
     }
 
     public List<ProductResponse> allProducts(){
-        List<Product> products = productRepository.allProducts();
+        List<Product> products = (List<Product>) productRepository.allProducts();
         ProductMapper productMapper = new ProductMapper();
         List<ProductResponse> productResponses = new ArrayList<>();
         for (Product product: products) {

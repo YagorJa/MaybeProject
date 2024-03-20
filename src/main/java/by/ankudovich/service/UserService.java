@@ -3,9 +3,9 @@ package by.ankudovich.service;
 import by.ankudovich.api.User.UserRequest;
 import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
-import by.ankudovich.enums.UserRole;
 import by.ankudovich.mapper.UserMapper;
 import by.ankudovich.repository.UserRepository;
+import by.ankudovich.repository.UserRepositoryJDBC;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService() {
+        this.userRepository = new UserRepositoryJDBC();
     }
 
     public UserResponse register(UserRequest userRequest) {
@@ -25,14 +25,14 @@ public class UserService {
         }
 
         UserMapper userMapper = new UserMapper();
-        UserRole.Role role = userRepository.allUsers().isEmpty() ? UserRole.Role.ADMIN : UserRole.Role.USER;
+//        UserRole.Role role = userRepository.allUsers().isEmpty() ? UserRole.Role.ADMIN : UserRole.Role.USER;
         User user = userMapper.toEntity(userRequest);
-        user.setRole(role);
+//        user.setRole(role);
         user = userRepository.add(user);
         return userMapper.toUserResponse(user);
     }
 
-    // Метод для проверки занятости логина
+
     private boolean isLoginOccupied(String login) {
         List<User> allUsers = (List<User>) userRepository.allUsers();
         for (User user : allUsers) {

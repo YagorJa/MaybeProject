@@ -2,6 +2,7 @@ package by.ankudovich.controller.product;
 
 import by.ankudovich.api.Product.ProductRequest;
 import by.ankudovich.api.Product.ProductResponse;
+import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.Product;
 import by.ankudovich.enums.ProductRole;
 import by.ankudovich.repository.ProductRepository;
@@ -25,9 +26,10 @@ public class AddProductServlet extends HttpServlet {
 
 @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductRepository repository = new ProductRepository();
-        ProductService productService = new ProductService(repository);
+//        ProductRepository repository = new ProductRepository();
+//        ProductService productService = new ProductService(repository);
 
+        ProductService productService = new ProductService();
         long code = Long.parseLong(req.getParameter("code"));
         String name = req.getParameter("name");
         ProductRole.PRODUCT typeOfProduct = ProductRole.PRODUCT.valueOf(req.getParameter("type"));
@@ -36,12 +38,20 @@ public class AddProductServlet extends HttpServlet {
 
     ProductRequest product = new ProductRequest(code,name, typeOfProduct, price, quantity);
 
+    try {
+        ProductResponse productResponse = productService.add(product);
 
-        productService.add(product);
+        req.getRequestDispatcher("/jsp/products/displayProducts.jsp").forward(req, resp);
+    } catch (RuntimeException e) {
+        req.setAttribute("errorMessage", e.getMessage());
+        req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
+    }
+
+//        productService.add(product);
         System.out.println("Четко, есть продукт");
-    List<ProductResponse> allProducts = productService.allProducts();
-    req.setAttribute("allProducts", allProducts);
-
-    req.getRequestDispatcher("/jsp/products/displayProducts.jsp").forward(req, resp);
+//    List<ProductResponse> allProducts = productService.allProducts();
+//    req.setAttribute("allProducts", allProducts);
+//
+//    req.getRequestDispatcher("/jsp/products/displayProducts.jsp").forward(req, resp);
 }
 }

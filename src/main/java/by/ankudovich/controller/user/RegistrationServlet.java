@@ -6,6 +6,7 @@ import by.ankudovich.enums.UserRole;
 import by.ankudovich.entity.User;
 import by.ankudovich.repository.UserFileRepository;
 import by.ankudovich.repository.UserRepository;
+import by.ankudovich.repository.UserRepositoryJDBC;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -23,9 +24,9 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        UserFileRepository userRepository = (UserFileRepository) getServletContext().getAttribute("fileRepository");
-        UserRepository userRepository = new UserFileRepository();
+//        UserRepository userRepository = new UserRepositoryJDBC();
 
-        UserService userService = new UserService(userRepository);
+        UserService userService = new UserService();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String name = req.getParameter("name");
