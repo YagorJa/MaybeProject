@@ -1,4 +1,4 @@
-package by.ankudovich.repository;
+package by.ankudovich.repository.product;
 
 import by.ankudovich.config.JDBC;
 import by.ankudovich.entity.Product;

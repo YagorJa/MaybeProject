@@ -1,6 +1,6 @@
 package by.ankudovich.controller.product;
 
-import by.ankudovich.repository.ProductRepository;
+import by.ankudovich.repository.product.ProductRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;

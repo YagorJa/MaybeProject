@@ -1,4 +1,4 @@
-package by.ankudovich.repository;
+package by.ankudovich.repository.user;
 
 import by.ankudovich.entity.User;
 import by.ankudovich.enums.UserRole;
@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import by.ankudovich.config.JDBC;
 

@@ -4,8 +4,8 @@ import by.ankudovich.api.User.UserRequest;
 import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 import by.ankudovich.mapper.UserMapper;
-import by.ankudovich.repository.UserRepository;
-import by.ankudovich.repository.UserRepositoryJDBC;
+import by.ankudovich.repository.user.UserRepository;
+import by.ankudovich.repository.user.UserRepositoryJDBC;
 
 import java.util.List;
 

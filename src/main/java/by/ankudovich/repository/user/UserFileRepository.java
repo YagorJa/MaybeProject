@@ -1,4 +1,4 @@
-package by.ankudovich.repository;
+package by.ankudovich.repository.user;
 
 import by.ankudovich.entity.User;
 

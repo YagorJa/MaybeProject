@@ -70,7 +70,7 @@
 
 <script>
     document.querySelector('.create-new').addEventListener('click', function() {
-        window.location.href = 'jsp/user/register.jsp';
+        window.location.href = 'jsp/authen/register.jsp';
     });
 </script>
 

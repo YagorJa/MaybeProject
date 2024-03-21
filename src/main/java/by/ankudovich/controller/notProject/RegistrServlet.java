@@ -1,7 +1,7 @@
 //package by.ankudovich.contrioller.notProject;
 //
 //import by.ankudovich.entity.User;
-//import by.ankudovich.repository.UserRepository;
+//import by.ankudovich.repository.user.UserRepository;
 //import jakarta.servlet.ServletException;
 //import jakarta.servlet.http.HttpServlet;
 //import jakarta.servlet.http.HttpServletRequest;

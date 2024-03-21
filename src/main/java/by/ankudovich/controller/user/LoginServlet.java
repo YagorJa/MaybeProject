@@ -1,10 +1,8 @@
 package by.ankudovich.controller.user;
 
 import by.ankudovich.api.User.UserResponse;
-import by.ankudovich.entity.User;
-import by.ankudovich.repository.UserFileRepository;
-import by.ankudovich.repository.UserRepository;
-import by.ankudovich.repository.UserRepositoryJDBC;
+import by.ankudovich.repository.user.UserRepository;
+import by.ankudovich.repository.user.UserRepositoryJDBC;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -27,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("jsp/user/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("jsp/authen/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -47,10 +45,10 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("userId", authentication.getId());
 
             req.setAttribute("user", authentication);
-            req.getRequestDispatcher("/jsp/user/welcome.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/authen/welcome.jsp").forward(req, resp);
 
         } catch (Exception exception) {
-            req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/authen/error.jsp").forward(req, resp);
         }
 
 

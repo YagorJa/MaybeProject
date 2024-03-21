@@ -2,11 +2,6 @@ package by.ankudovich.controller.user;
 
 import by.ankudovich.api.User.UserRequest;
 import by.ankudovich.api.User.UserResponse;
-import by.ankudovich.enums.UserRole;
-import by.ankudovich.entity.User;
-import by.ankudovich.repository.UserFileRepository;
-import by.ankudovich.repository.UserRepository;
-import by.ankudovich.repository.UserRepositoryJDBC;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;

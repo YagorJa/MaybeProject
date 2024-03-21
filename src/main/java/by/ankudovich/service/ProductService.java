@@ -4,9 +4,8 @@ import by.ankudovich.api.Product.ProductRequest;
 import by.ankudovich.api.Product.ProductResponse;
 import by.ankudovich.entity.Product;
 import by.ankudovich.mapper.ProductMapper;
-import by.ankudovich.repository.ProductRepository;
-import by.ankudovich.repository.ProductRepositoryInter;
-import by.ankudovich.repository.ProductRepositoryJDBC;
+import by.ankudovich.repository.product.ProductRepositoryInter;
+import by.ankudovich.repository.product.ProductRepositoryJDBC;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package by.ankudovich.controller.notProject;
 
 import by.ankudovich.entity.User;
-import by.ankudovich.repository.UserFileRepository;
+import by.ankudovich.repository.user.UserFileRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
