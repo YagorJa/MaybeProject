@@ -16,4 +16,8 @@ public interface UserRepository {
     public User authentication(String login, String password);
 
     public long userIdGenerator();
+
+    User getUserById(Long userId);
+
+    User findByLogin(String userLogin);
 }

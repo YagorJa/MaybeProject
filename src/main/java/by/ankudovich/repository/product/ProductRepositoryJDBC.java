@@ -98,4 +98,14 @@ public class ProductRepositoryJDBC implements ProductRepositoryInter {
     public long productIdGenerator() {
         return 0;
     }
+
+    @Override
+    public Product findByName(String productName) {
+        return null;
+    }
+
+    @Override
+    public Product findById(long productId) {
+        return null;
+    }
 }

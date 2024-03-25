@@ -1,5 +1,6 @@
 package by.ankudovich.filter;
 
+import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 import by.ankudovich.enums.UserRole;
 import jakarta.servlet.FilterChain;
@@ -22,7 +23,7 @@ public class Filter implements jakarta.servlet.Filter {
             return;
         }
 
-        User authenticatedUser = (User) httpServletRequest.getSession().getAttribute("authenticatedUser");
+        UserResponse authenticatedUser = (UserResponse) httpServletRequest.getSession().getAttribute("authenticatedUser");
         if (authenticatedUser == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/jsp/authen/login.jsp");
             return;

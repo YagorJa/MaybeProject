@@ -9,103 +9,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin panel</title>
     <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #008CBA;
+            --danger-color: #f44336;
+            --text-color: #ffffff;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #214c84;
-            background-blend-mode: overlay;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-
-        .registration-cssave form button.create-account {
-            width: 200px;
-        }
-
-        body {
-            background-color: transparent;
-        }
-
-        .registration-cssave {
-            padding: 50px 0;
-        }
-
-        #logout-form .logout-button {
-            background-color: red;
-        }
-
-        #logout-form .logout-button:hover {
-            background-color: darkred;
-        }
-
-        .registration-cssave form {
-            max-width: 800px;
-            padding: 50px 70px;
-            border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-            background-color: #fff;
-        }
-
-        .registration-cssave form h3 {
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        .registration-cssave form label {
             display: flex;
             flex-direction: column;
-            margin-bottom: 25px;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
 
-        .registration-cssave form label > span {
-            margin-bottom: 5px;
+        h3 {
+            margin-bottom: 20px;
         }
 
-        .registration-cssave .create-account {
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #3f93ff;
+        .button {
             border: none;
-            color: white;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .registration-cssave form {
-                padding: 50px 20px;
-            }
-        }
-
-        .registration-cssave .create-account:hover {
-            background-color: #2a6dbb;
+            color: var(--text-color);
+            text-align: center;
+            display: inline-block;
+            transition-duration: 0.4s;
             cursor: pointer;
+            padding: 15px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            font-size: 16px;
+        }
+
+        .button-primary {
+            background-color: var(--primary-color);
+        }
+
+        .button-primary:hover {
+            background-color: var(--text-color);
+            color: var(--primary-color);
+        }
+
+        .button-secondary {
+            background-color: var(--secondary-color);
+        }
+
+        .button-secondary:hover {
+            background-color: var(--text-color);
+            color: var(--secondary-color);
+        }
+
+        .button-danger {
+            background-color: var(--danger-color);
+        }
+
+        .button-danger:hover {
+            background-color: var(--text-color);
+            color: var(--danger-color);
         }
     </style>
 </head>
 <body>
-<div class="registration-cssave">
-    <h3>Admin Panel</h3>
-    <form method="post" action="jsp/admin/editUsers.jsp">
-        <div>
-            <button type="submit" class="create-account">Edit Users</button>
-        </div>
-    </form>
-    <form method="post" action="jsp/admin/editProducts.jsp">
-        <div>
-            <button type="submit" class="create-account">Edit Products</button>
-        </div>
-    </form>
-    <form id="logout-form" method="post" action="http://localhost:8090/TempDz4/admin">
-        <div>
-            <button type="submit" class="create-account logout-button">Log out</button>
-        </div>
-    </form>
-</div>
+<h3>Панель админа</h3>
+<form method="post" action="jsp/admin/editUser.jsp">
+    <button type="submit" class="button button-primary">Редактировать пользователей</button>
+</form>
+<form method="post" action="jsp/admin/editProduct.jsp">
+    <button type="submit" class="button button-secondary">Редактировать продукты</button>
+</form>
+<form id="logout-form" method="post" action="http://localhost:8090/TempDz4/admin">
+    <button type="submit" class="button button-danger">Выйти</button>
+</form>
 </body>
 </html>

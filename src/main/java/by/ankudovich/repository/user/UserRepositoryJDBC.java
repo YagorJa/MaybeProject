@@ -134,4 +134,14 @@ public class UserRepositoryJDBC implements UserRepository {
     public long userIdGenerator() {
         return 0;
     }
+
+    @Override
+    public User getUserById(Long userId) {
+        return null;
+    }
+
+    @Override
+    public User findByLogin(String userLogin) {
+        return null;
+    }
 }

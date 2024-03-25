@@ -9,5 +9,7 @@ public interface ProductRepositoryInter {
     public void  deleteProductById(long productId);
     public Collection<Product> allProducts();
     public long productIdGenerator();
+    Product findByName(String productName);
 
+    Product findById(long productId);
 }

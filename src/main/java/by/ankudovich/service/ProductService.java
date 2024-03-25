@@ -33,5 +33,28 @@ public class ProductService {
         }
         return productResponses;
     }
+    public void deleteProduct(long productId) {
+        productRepository.deleteProductById(productId);
+    }
+
+
+    public ProductResponse getProductById(long productId) {
+        ProductMapper productMapper = new ProductMapper();
+        Product product = productRepository.findById(productId);
+        if (product != null) {
+            return productMapper.toProductResponse(product);
+        } else {
+            return null;
+        }
+    }
+    public ProductResponse getProductByName(String productName) {
+        ProductMapper productMapper = new ProductMapper();
+        Product product = productRepository.findByName(productName);
+        if (product != null) {
+            return productMapper.toProductResponse(product);
+        } else {
+            return null;
+        }
+    }
 }
 

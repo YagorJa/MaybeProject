@@ -12,98 +12,98 @@
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #214c84;
-            background-blend-mode: overlay;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-color: #f3f4f6;
+            font-family: Arial, sans-serif;
             height: 100%;
         }
 
-        .registration-cssave form button.create-account {
-            width: 200px;
-        }
-
-        body {
-            background-color: transparent;
-        }
-
-        .registration-cssave {
-            padding: 50px 0;
-        }
-
-        .registration-cssave form {
-            max-width: 800px;
-            padding: 50px 70px;
-            border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-            background-color: #fff;
-        }
-
-        .registration-cssave form h3 {
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        .registration-cssave form label {
+        .container {
             display: flex;
             flex-direction: column;
-            margin-bottom: 25px;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
         }
 
-        .registration-cssave form label > span {
-            margin-bottom: 5px;
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            max-width: 400px;
+            width: 100%;
         }
 
-        .registration-cssave .create-account {
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 18px;
+        .form-container h3 {
             font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-container button {
             background-color: #3f93ff;
+            color: #ffffff;
             border: none;
-            color: white;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .registration-cssave form {
-                padding: 50px 20px;
-            }
-        }
-
-        .registration-cssave .create-account:hover {
-            background-color: #2a6dbb;
+            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .form-container button:hover {
+            background-color: #2a6dbb;
+        }
+
+        .all-products {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .all-products h3 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .all-products ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .all-products li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f1f5f8;
         }
     </style>
 </head>
 <body>
-<div class="registration-cssave">
-    <h3>Admin Panel: Products</h3>
-    <form method="post" action="http://ocalhost:8090/TempDz4/jsp/admin/findProduct.jsp">
-        <div>
-            <button type="submit" class="create-account">Find Product</button>
-        </div>
-    </form>
-    <form method="post" action="http://ocalhost:8090/TempDz4/jsp/admin/deleteProduct.jsp">
-        <div>
-            <button type="submit" class="create-account">Delete Product</button>
-        </div>
-    </form>
-    <form method="post" action="http://ocalhost:8090/TempDz4/jsp/admin/addProduct.jsp">
-        <div>
-            <button type="submit" class="create-account">Add New Product</button>
-        </div>
-    </form>
-    <form method="post" action="http://ocalhost:8090/TempDz4/УРЛ для серлета по отображению">
-        <div>
-            <button type="submit" class="create-account">Show All Products</button>
-        </div>
-    </form>
-    <%--@elvariable id="products" type="by.ankudovich.entity.*"--%>
+<div class="container">
+    <div class="form-container">
+        <h3>Admin Panel: Products</h3>
+        <form method="post" action="http://localhost:8090/TempDz4/jsp/admin/findProduct.jsp">
+            <button type="submit">Find Product</button>
+        </form>
+        <form method="post" action="http://localhost:8090/TempDz4/jsp/admin/deleteProduct.jsp">
+            <button type="submit">Delete Product</button>
+        </form>
+        <form method="post" action="http://localhost:8090/TempDz4/jsp/admin/addProduct.jsp">
+            <button type="submit">Add New Product</button>
+        </form>
+        <form method="post" action="http://localhost:8090/TempDz4/jsp/products/displayProducts.jsp">
+            <button type="submit">Show All Products</button>
+        </form>
+    </div>
+
     <c:if test="${not empty products}">
         <div class="all-products">
             <h3>All Products</h3>

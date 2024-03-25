@@ -58,7 +58,7 @@
 <body>
 <div class="container">
     <h1>Добавление товара</h1>
-    <form action="/TempDz4/addProduct" method="post">
+    <form action="http://localhost:8090/TempDz4/addProduct" method="post">
         <label for="code">Код товара:</label><br>
         <input type="text" id="code" name="code"><br>
 
@@ -81,6 +81,10 @@
         <input type="text" id="quantity" name="quantity"><br><br>
 
         <input type="submit" value="Добавить товар">
+        <%--@elvariable id="message" type="by.ankudovich.controller.product.AddProductServlet"--%>
+        <c:if test="${not empty message}">
+            <p>${message}</p>
+        </c:if>
     </form>
 </div>
 </body>

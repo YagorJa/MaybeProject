@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<jsp:useBean id="allProducts" scope="request" type="java.util.List"/>--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -59,9 +58,7 @@
         <th>Тип продукта</th>
     </tr>
 
-
-
-    <jsp:useBean id="allProducts" scope="request" type="java.util.List"/>
+    <%--@elvariable id="allProducts" type="java.util.List"--%>
     <c:forEach items="${allProducts}" var="product">
         <tr>
             <td>${product.id}</td>

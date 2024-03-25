@@ -7,96 +7,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management</title>
+    <title>User Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #214c84;
-            background-blend-mode: overlay;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-color: #f3f3f3;
+            font-family: Arial, sans-serif;
             height: 100%;
         }
 
-        .registration-cssave form button.create-account {
-            width: 200px;
-        }
-
-        body {
-            background-color: transparent;
-        }
-
-        .registration-cssave {
-            padding: 50px 0;
-        }
-
-        .registration-cssave form {
-            max-width: 800px;
-            padding: 50px 70px;
-            border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
-            background-color: #fff;
-        }
-
-        .registration-cssave form h3 {
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        .registration-cssave form label {
+        .admin-panel {
             display: flex;
             flex-direction: column;
-            margin-bottom: 25px;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
-        .registration-cssave form label > span {
-            margin-bottom: 5px;
+        .admin-panel form {
+            margin-bottom: 20px;
         }
 
-        .registration-cssave .create-account {
-            border-radius: 30px;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #3f93ff;
-            border: none;
+        .admin-panel .create-account {
+            background-color: #4CAF50;
             color: white;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .registration-cssave form {
-                padding: 50px 20px;
-            }
-        }
-
-        .registration-cssave .create-account:hover {
-            background-color: #2a6dbb;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .admin-panel .create-account:hover {
+            background-color: #45a049;
+        }
+
+        .admin-panel .all-users {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .admin-panel .all-users h3 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .admin-panel .all-users ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .admin-panel .all-users li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
-<div class="registration-cssave">
+<div class="admin-panel">
     <h3>Admin Panel: Users</h3>
     <form method="post" action="http://localhost:8090/TempDz4/jsp/admin/findUser.jsp">
-        <div>
-            <button type="submit" class="create-account">Search User</button>
-        </div>
+        <button type="submit" class="create-account">Search User</button>
     </form>
-    <form method="post" action="http://ocalhost:8090/TempDz4/jsp/admin/deleteUser.jsp">
-        <div>
-            <button type="submit" class="create-account">Delete User</button>
-        </div>
+    <form method="post" action="http://localhost:8090/TempDz4/jsp/admin/deleteUser.jsp">
+        <button type="submit" class="create-account">Delete User</button>
     </form>
-    <form method="post" action="http://ocalhost:8090/TempDz4/УРЛ для сервлета по отоборажению всех">
-        <div>
-            <button type="submit" class="create-account">Show All Users</button>
-        </div>
+    <form method="post" action="http://localhost:8090/TempDz4/editUsers">
+        <button type="submit" class="create-account">Show All Users</button>
     </form>
     <%--@elvariable id="users" type="by"--%>
     <c:if test="${not empty users}">

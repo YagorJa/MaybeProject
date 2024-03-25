@@ -4,6 +4,7 @@ import by.ankudovich.entity.User;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,6 +84,24 @@ public class UserFileRepository implements UserRepository {
         }
 
         serializeUser();
+    }
+
+    @Override
+    public User getUserById(Long userId) {
+        return allUsers().stream()
+                .filter(user -> user.getId() == userId)
+                .findFirst()
+                .orElse(null);
+    }
+    @Override
+    public User findByLogin(String userLogin) {
+        Collection<User> allUsers = allUsers();
+        for (User user : allUsers) {
+            if (user.getLogin().equals(userLogin)) {
+                return user;
+            }
+        }
+        return null;
     }
 
 

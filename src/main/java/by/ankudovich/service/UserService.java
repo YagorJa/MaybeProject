@@ -7,6 +7,7 @@ import by.ankudovich.mapper.UserMapper;
 import by.ankudovich.repository.user.UserRepository;
 import by.ankudovich.repository.user.UserRepositoryJDBC;
 
+import java.util.Collection;
 import java.util.List;
 
 public class UserService {
@@ -58,5 +59,33 @@ public class UserService {
             throw new RuntimeException("ПОльзователь с таким логином не найден");
 
         }
+
+    public void deleteUserById(Long userId) {
+        userRepository.deleteUserById(userId);
+    }
+
+    public UserResponse getUserByLogin(String userLogin) {
+        UserMapper userMapper = new UserMapper();
+        User user = userRepository.findByLogin(userLogin);
+        if (user != null) {
+            return userMapper.toUserResponse(user);
+        } else {
+            return null;
+        }
+    }
+
+
+    public UserResponse getUserById(long userId) {
+        UserMapper userMapper = new UserMapper();
+        User user = userRepository.getUserById(userId);
+        if (user != null) {
+            return userMapper.toUserResponse(user);
+        } else {
+            return null;
+        }
+    }
+    public Collection<User> allUsers() {
+        return userRepository.allUsers();
+    }
 
 }

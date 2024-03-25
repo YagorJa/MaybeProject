@@ -85,12 +85,12 @@
 </head>
 <body>
 <div class="registration-cssave">
-    <form method="post" action="http://ocalhost:8090/TempDz4/deleteuser ТАКОГО ПОКА НЕТ">
+    <form method="post" action="http://localhost:8090/TempDz4/deleteuser">
         <h3>Delete User</h3>
         <div>
             <label>
                 <span>User ID:</span>
-                <input class="form-control item" type="text" name="deleteUserId" placeholder="DeleteUserId"
+                <input class="form-control item" type="text" name="deleteUser" placeholder="DeleteUserId"
                        required>
             </label>
         </div>

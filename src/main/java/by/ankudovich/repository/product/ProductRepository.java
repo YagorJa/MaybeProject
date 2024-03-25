@@ -5,6 +5,7 @@ import by.ankudovich.repository.exception.ProductNotFound;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ProductRepository implements ProductRepositoryInter {
@@ -62,6 +63,21 @@ public long productIdGenerator(){
         Product product = findProduct(idProduct); // создаем продукт и передаем в него айди, присваем
                                                     // этот продукт продукту в методе и возрашаем истину  если он сущесвтует и количесвто больше 0
         return product!= null && product.getQuantity() > 0;
+    }
+
+    @Override
+    public Product findById(long productId) {
+        return allProducts().stream().filter(product -> product.getId() == productId).findFirst().orElse(null);
+    }
+    @Override
+    public Product findByName(String productName) {
+        Collection<Product> allProducts = allProducts();
+        for (Product product : allProducts) {
+            if (product.getNameOfProduct().equals(productName)) {
+                return product;
+            }
+        }
+        return null;
     }
 
     private void serealizeProduct() {

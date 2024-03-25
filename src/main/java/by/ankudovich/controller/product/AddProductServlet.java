@@ -10,31 +10,46 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class AddProductServlet extends HttpServlet {
+public class AddProductServlet  {
+    private final ProductService productService;
 
-@Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        ProductService productService = new ProductService();
-        long code = Long.parseLong(req.getParameter("code"));
-        String name = req.getParameter("name");
-        ProductRole.PRODUCT typeOfProduct = ProductRole.PRODUCT.valueOf(req.getParameter("type"));
-        double price = Double.parseDouble(req.getParameter("price"));
-        long quantity = Long.parseLong(req.getParameter("quantity"));
-
-    ProductRequest product = new ProductRequest(code,name, typeOfProduct, price, quantity);
-
-    try {
-       productService.add(product);
-
-        req.getRequestDispatcher("/jsp/products/displayProducts.jsp").forward(req, resp);
-    } catch (RuntimeException e) {
-        req.setAttribute("errorMessage", e.getMessage());
-        req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
+    public AddProductServlet() {
+        this.productService = new ProductService();
     }
 
 
-        System.out.println("Четко, есть продукт");
+    public void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        ProductRequest productRequest = new ProductRequest();
+        productRequest.setNameOfProduct(req.getParameter("name"));
+        productRequest.setCodeOfProduct(Long.valueOf(req.getParameter("code")));
+        productRequest.setTypeOfProduct(ProductRole.PRODUCT.valueOf(req.getParameter("type")));
+        productRequest.setPrice(Double.parseDouble(req.getParameter("price")));
+        productRequest.setQuantity(Integer.parseInt(req.getParameter("quantity")));
+        productService.add(productRequest);
+        req.setAttribute("message", "Товар  добавлен");
+        req.getRequestDispatcher("/jsp/admin/addProduct.jsp").forward(req, resp);
+//        ProductService productService = new ProductService();
+//        long code = Long.parseLong(req.getParameter("code"));
+//        String name = req.getParameter("name");
+//        ProductRole.PRODUCT typeOfProduct = ProductRole.PRODUCT.valueOf(req.getParameter("type"));
+//        double price = Double.parseDouble(req.getParameter("price"));
+//        long quantity = Long.parseLong(req.getParameter("quantity"));
+//
+//
+//    ProductRequest product = new ProductRequest(code,name, typeOfProduct, price, quantity);
+//
+//    try {
+//       productService.add(product);
+//
+//        req.getRequestDispatcher("/jsp/products/displayProducts.jsp").forward(req, resp);
+//    } catch (RuntimeException e) {
+//        req.setAttribute("errorMessage", e.getMessage());
+//        req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
+//    }
+//
+//
+//        System.out.println("Четко, есть продукт");
 
 }
 }

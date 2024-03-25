@@ -5,35 +5,39 @@
                       https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0"
          metadata-complete="true">
-<servlet>
-    <servlet-name>UserServlet</servlet-name>
-    <servlet-class>by.ankudovich.controller.notProject.UserServlet</servlet-class>
-</servlet>
+    <display-name>TempDz4</display-name>
+    <description>
+        Welcome to OvoscheBazaProject
+    </description>
+<!--<servlet>-->
+<!--    <servlet-name>UserServlet</servlet-name>-->
+<!--    <servlet-class>by.ankudovich.controller.notProject.UserServlet</servlet-class>-->
+<!--</servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>UserServlet</servlet-name>-->
+<!--        <url-pattern>/hello</url-pattern>-->
+<!--    </servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.user.RegistrationServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>RegistrationServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.user.RegistrationServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <url-pattern>/registr</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>RegistrationServlet</servlet-name>-->
+<!--        <url-pattern>/registr</url-pattern>-->
+<!--    </servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>Display</servlet-name>
-        <servlet-class>by.ankudovich.controller.notProject.DisplayServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>Display</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.notProject.DisplayServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Display</servlet-name>
-        <url-pattern>/display</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>Display</servlet-name>-->
+<!--        <url-pattern>/display</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 <!--    <servlet>-->
 <!--        <servlet-name>TestingJSP</servlet-name>-->
@@ -45,91 +49,109 @@
 <!--        <url-pattern>/testing-jsp</url-pattern>-->
 <!--    </servlet-mapping>-->
 
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.user.LoginServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>LoginServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.user.LoginServlet</servlet-class>-->
+<!--        <load-on-startup>0</load-on-startup>-->
+<!--    </servlet>-->
 
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>LoginServlet</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>display</servlet-name>-->
+<!--        <jsp-file>/jsp/notProducts/display.jsp</jsp-file>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>display</servlet-name>-->
+<!--        <url-pattern>/display1</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>RegisterRedirectServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.user.RegisterRedirectServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>RegisterRedirectServlet</servlet-name>-->
+<!--        <url-pattern>/registerRedirect</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>AddProductServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.product.AddProductServlet</servlet-class>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>AddProductServlet</servlet-name>-->
+<!--        <url-pattern>/addProduct</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+
+<!--    <servlet>-->
+<!--        <servlet-name>welcome</servlet-name>-->
+<!--        <jsp-file>/jsp/welcome.jsp</jsp-file>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>welcome</servlet-name>-->
+<!--        <url-pattern>/welcome</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--<servlet>-->
+<!--    <servlet-name>EditProfileServlet</servlet-name>-->
+<!--    <servlet-class>by.ankudovich.controller.user.EditProfileServlet</servlet-class>-->
+<!--</servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>EditProfileServlet</servlet-name>-->
+<!--        <url-pattern>/editProfile</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>DisplayProductServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.product.DisplayProdcutServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>DisplayProductServlet</servlet-name>-->
+<!--        <url-pattern>/display-pr</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    -->
+<!--    <servlet>-->
+<!--        <servlet-name>DeleteProductServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.product.DeleteProductServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>DeleteProductServlet</servlet-name>-->
+<!--        <url-pattern>/delete</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>FindProductServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.product.FindProductServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>FindProductServlet</servlet-name>-->
+<!--        <url-pattern>/find</url-pattern>-->
+<!--    </servlet-mapping>-->
+    <welcome-file-list>
+        <welcome-file>/jsp/authen/login.jsp</welcome-file>
+    </welcome-file-list>
+<servlet>
+    <servlet-name>DispatcherServlet</servlet-name>
+    <servlet-class>by.ankudovich.controller.DispatcherServlet</servlet-class>
+</servlet>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
     <servlet>
-        <servlet-name>display</servlet-name>
-        <jsp-file>/jsp/notProducts/display.jsp</jsp-file>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>by.ankudovich.controller.user.EditProfileServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>display</servlet-name>
-        <url-pattern>/display1</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RegisterRedirectServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.user.RegisterRedirectServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>RegisterRedirectServlet</servlet-name>
-        <url-pattern>/registerRedirect</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AddProductServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.product.AddProductServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>AddProductServlet</servlet-name>
-        <url-pattern>/addProduct</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>welcome</servlet-name>
-        <jsp-file>/jsp/welcome.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>welcome</servlet-name>
-        <url-pattern>/welcome</url-pattern>
-    </servlet-mapping>
-
-<servlet>
-    <servlet-name>EditProfileServlet</servlet-name>
-    <servlet-class>by.ankudovich.controller.user.EditProfileServlet</servlet-class>
-</servlet>
     <servlet-mapping>
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/editProfile</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>DisplayProductServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.product.DisplayProdcutServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DisplayProductServlet</servlet-name>
-        <url-pattern>/display-pr</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.product.DeleteProductServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>DeleteProductServlet</servlet-name>
-        <url-pattern>/delete</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>FindProductServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.product.FindProductServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>FindProductServlet</servlet-name>
-        <url-pattern>/find</url-pattern>
-    </servlet-mapping>
-
     <filter>
         <filter-name>Filter</filter-name>
         <filter-class>by.ankudovich.filter.Filter</filter-class>

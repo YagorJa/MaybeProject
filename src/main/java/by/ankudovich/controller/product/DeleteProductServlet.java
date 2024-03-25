@@ -12,8 +12,8 @@ public class DeleteProductServlet extends HttpServlet {
     private ProductRepository productRepository;
 
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (productRepository == null) {
             productRepository = new ProductRepository();
             getServletContext().setAttribute("ProductRepository", productRepository);

@@ -1,3 +1,4 @@
+<%--@elvariable id="user" type="javax.xml.stream.util.StreamReaderDelegate"--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -7,96 +8,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client panel</title>
+    <title>User panel</title>
     <style>
-        body, html {
+        body {
             margin: 0;
             padding: 0;
-            background-color: #214c84;
-            background-blend-mode: overlay;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-
-        .registration-cssave form button.create-account {
-            width: 200px;
-        }
-
-        body {
-            background-color: transparent;
+            font-family: Arial, sans-serif;
+            background-color: #f2f4f8;
         }
 
         .registration-cssave {
-            padding: 50px 0;
-        }
-
-        #logout-form .logout-button {
-            background-color: red;
-        }
-
-        #logout-form .logout-button:hover {
-            background-color: darkred;
-        }
-
-        .registration-cssave form {
             max-width: 800px;
-            padding: 50px 70px;
+            margin: 50px auto;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
 
-        .registration-cssave form h3 {
+        h3 {
+            text-align: center;
+            font-size: 24px;
             font-weight: bold;
+            color: #333;
             margin-bottom: 30px;
         }
 
-        .registration-cssave form label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 25px;
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .registration-cssave form label > span {
-            margin-bottom: 5px;
+        .welcome-message h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
         }
 
-        .registration-cssave .create-account {
-            border-radius: 30px;
+        .smiley {
+            font-size: 36px;
+        }
+
+        .edit-button, .logout-button {
+            display: inline-block;
             padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #3f93ff;
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-button:hover, .logout-button:hover {
+            background-color: #2a6dbb;
+        }
+
+        .create-account {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3f93ff;
+            color: #fff;
             font-size: 18px;
             font-weight: bold;
-            background-color: #3f93ff;
-            border: none;
-            color: white;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .registration-cssave form {
-                padding: 50px 20px;
-            }
-        }
-
-        .registration-cssave .create-account:hover {
-            background-color: #2a6dbb;
             cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .create-account:hover {
+            background-color: #2a6dbb;
+        }
+
+        .logout-button {
+            background-color: #ff5c5c;
+        }
+
+        .logout-button:hover {
+            background-color: #ff3333;
         }
     </style>
 </head>
 <body>
 <div class="registration-cssave">
     <h3>Your Account</h3>
+    <div class="welcome-message">
+        <h1>Welcome, ${user.name} ${user.surname}!</h1>
+        <div class="smiley">&#128515;</div>
+        <a href="${pageContext.request.contextPath}/editProfile" class="edit-button">Редактировать свои данные</a>
+        <%-- короче тут изза того что у меня тег <a> без явного указания метода
+          используется метод GET по дефолту типо. Поэтому, для обработки GET-запросов в моей сервлете редактирования профиля
+          EditProfileServlet, я должен явно указать метод doGet(), чтобы обработать GET-запросы и открыть форму редактирования профиля.
+          а вот уже на самой форме я использую метод пост для работы с данными и само собой должен определить его в сервлетике
+         --%>
+    </div>
     <form method="post" action="jsp/user/products.jsp">
         <div>
             <button type="submit" class="create-account">Products</button>
         </div>
     </form>
-    <form id="logout-form" method="post" action="http://localhost:8090/TempDz4/УРЛ для выхода">
+    <form id="logout-form" method="post" action="http://localhost:8090/TempDz4/user">
         <div>
             <button type="submit" class="create-account logout-button">Log out</button>
         </div>

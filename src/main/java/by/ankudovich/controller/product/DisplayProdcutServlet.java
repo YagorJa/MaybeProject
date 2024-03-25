@@ -26,7 +26,7 @@ public class DisplayProdcutServlet extends HttpServlet {
         ProductRepository productRepository = new ProductRepository();
         List<Product> allProducts = productRepository.allProducts();
 
-        // Устанавливаем список всех пользователей как атрибут запроса
+
         request.setAttribute("allProducts", allProducts);
         request.getRequestDispatcher("jsp/products/displayProducts.jsp").forward(request, response);
     }

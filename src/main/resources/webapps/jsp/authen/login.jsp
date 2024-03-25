@@ -52,11 +52,11 @@
     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp" alt="logo">
     <h4>We are The Lotus Team</h4>
 
-    <form action="login" method="post">
+    <form action="http://localhost:8090/TempDz4/login" method="post">
         Please login to your account<br><br>
 
         Username<br>
-        <input type="text" name="username" placeholder=""><br>
+        <input type="text" name="login" placeholder=""><br>
 
         Password<br>
         <input type="password" name="password" placeholder=""><br><br>

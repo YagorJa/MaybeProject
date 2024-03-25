@@ -56,7 +56,7 @@
 <body>
 <div class="container">
     <h1>Удаление товара</h1>
-    <form action="http://localhost:8090/TempDz4/delete" method="post">
+    <form action="http://localhost:8090/TempDz4/deleteProduct" method="post">
         <label for="id">ID товара для удаления:</label><br>
         <input type="text" id="id" name="id"><br><br>
 

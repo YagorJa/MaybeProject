@@ -12,11 +12,11 @@ public class ProductRequest {
     private double price;
     private long quantity;
 
-    public ProductRequest(Long codeOfProduct, String nameOfProduct, ProductRole.PRODUCT typeOfProduct, double price, long quantity) {
-        this.codeOfProduct = codeOfProduct;
-        this.nameOfProduct = nameOfProduct;
-        this.typeOfProduct = typeOfProduct;
-        this.price = price;
-        this.quantity = quantity;
-    }
+//    public ProductRequest(Long codeOfProduct, String nameOfProduct, ProductRole.PRODUCT typeOfProduct, double price, long quantity) {
+//        this.codeOfProduct = codeOfProduct;
+//        this.nameOfProduct = nameOfProduct;
+//        this.typeOfProduct = typeOfProduct;
+//        this.price = price;
+//        this.quantity = quantity;
+//    }
 }

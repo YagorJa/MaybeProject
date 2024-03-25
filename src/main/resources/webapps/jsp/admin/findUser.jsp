@@ -85,7 +85,7 @@
 </head>
 <body>
 <div class="registration-cssave">
-    <form method="post" action="http://localhost:8090/TempDz4/searchuser пока нету">
+    <form method="post" action="http://localhost:8090/TempDz4/finduser">
         <h3>Find User</h3>
         <div>
             <label>
