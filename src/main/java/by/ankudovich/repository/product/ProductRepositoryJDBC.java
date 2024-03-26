@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class ProductRepositoryJDBC implements ProductRepositoryInter {
     private final String ADD_PRODUCT = "insert into project.product (id, code, \"name\", price, quantity, type_role) " + "values (?,?,?,?,?,?)";
@@ -101,11 +102,31 @@ public class ProductRepositoryJDBC implements ProductRepositoryInter {
 
     @Override
     public Product findByName(String productName) {
-        return null;
+        try (Connection connection = JDBC.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM project.product WHERE name = ?")) {
+            preparedStatement.setString(1, productName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    long id = resultSet.getLong("id");
+                    String name = resultSet.getString("name");
+                    String type = resultSet.getString("type");
+                    double price = resultSet.getDouble("price");
+                    int quantity = resultSet.getInt("quantity");
+                    return new Product(id, Long.valueOf(name), type, price, quantity);
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find product with name: " + productName, e);
+        }
     }
 
     @Override
     public Product findById(long productId) {
+        return null;
+    }
+    @Override
+    public List<Product> getProductsByIds(List<Long> ids) {
         return null;
     }
 }

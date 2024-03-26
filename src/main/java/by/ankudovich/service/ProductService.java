@@ -4,6 +4,7 @@ import by.ankudovich.api.Product.ProductRequest;
 import by.ankudovich.api.Product.ProductResponse;
 import by.ankudovich.entity.Product;
 import by.ankudovich.mapper.ProductMapper;
+import by.ankudovich.repository.product.ProductRepository;
 import by.ankudovich.repository.product.ProductRepositoryInter;
 import by.ankudovich.repository.product.ProductRepositoryJDBC;
 
@@ -55,6 +56,16 @@ public class ProductService {
         } else {
             return null;
         }
+    }
+    public List<ProductResponse> getProductsByIds(List<Long> ids) {
+        ProductRepositoryInter repository = new ProductRepositoryJDBC();
+        List<Product> products = repository.getProductsByIds(ids);
+        if (products.isEmpty()) {
+            throw new RuntimeException("Товары не добавлены");
+        }
+        ProductMapper productMapper = new ProductMapper();
+        List<ProductResponse> productResponses = products.stream().map(product -> productMapper.toProductResponse(product)).toList();
+        return productResponses;
     }
 }
 

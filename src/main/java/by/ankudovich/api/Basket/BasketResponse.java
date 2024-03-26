@@ -1,9 +1,9 @@
-package by.ankudovich.entity;
+package by.ankudovich.api.Basket;
 
 import lombok.Data;
 
 @Data
-public class Basket {
+public class BasketResponse {
     private Long id;
     private Long productId;
     private Long orderId;

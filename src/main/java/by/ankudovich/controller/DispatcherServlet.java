@@ -3,6 +3,10 @@ package by.ankudovich.controller;
 
 
 
+import by.ankudovich.controller.basket.BasketContr;
+import by.ankudovich.controller.basket.CleanBasketContr;
+import by.ankudovich.controller.order.AllOrderContr;
+import by.ankudovich.controller.order.OrderContr;
 import by.ankudovich.controller.product.*;
 import by.ankudovich.controller.user.*;
 import jakarta.servlet.ServletException;
@@ -65,6 +69,23 @@ public class DispatcherServlet extends HttpServlet {
             DisplayProductsUser showProductsClientController = new DisplayProductsUser();
             showProductsClientController.showProducts(request, response);
         }
+
+        if (request.getParameter("addtobasket") != null) {
+        BasketContr basketController = new BasketContr();
+        basketController.addOrder_Basket(request, response);
+    }
+        if (request.getParameter("makeOrder") != null) {
+        OrderContr orderController = new OrderContr();
+        orderController.makeOrder(request, response);
+    }
+        if (request.getParameter("gotobasket") != null) {
+        AllOrderContr allOrdersController = new AllOrderContr();
+        allOrdersController.allOrders(request, response);
+    }
+        if (request.getParameter("cleanBasket") != null) {
+        CleanBasketContr cleanBasketController = new CleanBasketContr();
+        cleanBasketController.clean(request, response);
+    }
 
     }
 }
