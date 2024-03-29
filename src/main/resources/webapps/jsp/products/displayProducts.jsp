@@ -57,7 +57,7 @@
         <th>Количество на складе</th>
         <th>Тип продукта</th>
     </tr>
-
+<%--Надо сделать бля крч что бы вызывался сервлет, который вызывает эту джсп (что бы выводился список продуктов)--%>
     <%--@elvariable id="allProducts" type="java.util.List"--%>
     <c:forEach items="${allProducts}" var="product">
         <tr>

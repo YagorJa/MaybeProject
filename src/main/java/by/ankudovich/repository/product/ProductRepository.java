@@ -69,6 +69,12 @@ public long productIdGenerator(){
     public Product findById(long productId) {
         return allProducts().stream().filter(product -> product.getId() == productId).findFirst().orElse(null);
     }
+
+    @Override
+    public List<Product> getProductsByIds(List<Long> ids) {
+        return null;
+    }
+
     @Override
     public Product findByName(String productName) {
         Collection<Product> allProducts = allProducts();

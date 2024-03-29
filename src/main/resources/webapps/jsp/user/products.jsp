@@ -91,7 +91,7 @@
             border-radius: 5px;
         }
     </style>
-</head>
+</head>F
 <body>
 <div class="product-container">
     <h3>User Panel: Products</h3>
