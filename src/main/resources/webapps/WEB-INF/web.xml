@@ -136,6 +136,15 @@
     <welcome-file-list>
         <welcome-file>/jsp/authen/login.jsp</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>Init</servlet-name>
+        <servlet-class>by.ankudovich.controller.Init</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Init</servlet-name>
+        <url-pattern>/init</url-pattern>
+    </servlet-mapping>
 <servlet>
     <servlet-name>DispatcherServlet</servlet-name>
     <servlet-class>by.ankudovich.controller.DispatcherServlet</servlet-class>

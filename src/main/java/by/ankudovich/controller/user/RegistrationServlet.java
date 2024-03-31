@@ -29,7 +29,7 @@ public class RegistrationServlet  {
             userService.register(userRequest);
             req.getRequestDispatcher("/jsp/user/user.jsp").forward(req, resp);
         } catch (IllegalArgumentException e) {
-            req.setAttribute("error", "Такой пользователь уже существует!");
+            req.setAttribute("error", "Этот пользователь  существует!");
             req.getRequestDispatcher("/jsp/authen/error.jsp").forward(req, resp);
         }
 //    @Override

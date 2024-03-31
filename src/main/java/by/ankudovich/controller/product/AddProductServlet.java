@@ -29,27 +29,6 @@ public class AddProductServlet  {
         productService.add(productRequest);
         req.setAttribute("message", "Товар  добавлен");
         req.getRequestDispatcher("/jsp/admin/addProduct.jsp").forward(req, resp);
-//        ProductService productService = new ProductService();
-//        long code = Long.parseLong(req.getParameter("code"));
-//        String name = req.getParameter("name");
-//        ProductRole.PRODUCT typeOfProduct = ProductRole.PRODUCT.valueOf(req.getParameter("type"));
-//        double price = Double.parseDouble(req.getParameter("price"));
-//        long quantity = Long.parseLong(req.getParameter("quantity"));
-//
-//
-//    ProductRequest product = new ProductRequest(code,name, typeOfProduct, price, quantity);
-//
-//    try {
-//       productService.add(product);
-//
-//        req.getRequestDispatcher("/jsp/products/displayProducts.jsp").forward(req, resp);
-//    } catch (RuntimeException e) {
-//        req.setAttribute("errorMessage", e.getMessage());
-//        req.getRequestDispatcher("/jsp/user/error.jsp").forward(req, resp);
-//    }
-//
-//
-//        System.out.println("Четко, есть продукт");
 
 }
 }

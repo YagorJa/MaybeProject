@@ -2,8 +2,14 @@ package by.ankudovich.repository.order;
 
 import by.ankudovich.entity.Order;
 
-public interface OrderRepository {
-    Order add(Long userId);
+import java.sql.SQLException;
 
-    Order getOrderByUserid(Long userId);
+public interface OrderRepository {
+    Order add(Long userId, double productPrice) throws SQLException;
+
+    Order getOrderByUserid(Long userId) throws SQLException;
+
+    Long getCostByOrderId(Long orderId) throws SQLException;
+
+    void updateOrderCost(Long orderId, Long newCost) throws SQLException;
 }

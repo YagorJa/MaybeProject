@@ -3,12 +3,10 @@ package by.ankudovich.repository.product;
 import by.ankudovich.config.JDBC;
 import by.ankudovich.entity.Product;
 import by.ankudovich.enums.ProductRole;
+import by.ankudovich.enums.UserRole;
 
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -70,6 +68,12 @@ public class ProductRepositoryJDBC implements ProductRepositoryInter {
 
     @Override
     public void deleteProductById(long productId) {
+        try (Connection connection = JDBC.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM project.product WHERE id = ?")) {
+            preparedStatement.setLong(1, productId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to delete product with ID: " + productId, e);
+        }
     }
 
     @Override
@@ -108,10 +112,11 @@ public class ProductRepositoryJDBC implements ProductRepositoryInter {
                 if (resultSet.next()) {
                     long id = resultSet.getLong("id");
                     String name = resultSet.getString("name");
-                    String type = resultSet.getString("type");
+                    String type_role = resultSet.getString(6);
+                    ProductRole.PRODUCT role = ProductRole.PRODUCT.valueOf(type_role);
                     double price = resultSet.getDouble("price");
                     int quantity = resultSet.getInt("quantity");
-                    return new Product(id, Long.valueOf(name), type, price, quantity);
+                    return new Product(id, Long.valueOf(name), String.valueOf(role), price, quantity);
                 } else {
                     return null;
                 }
@@ -123,10 +128,45 @@ public class ProductRepositoryJDBC implements ProductRepositoryInter {
 
     @Override
     public Product findById(long productId) {
-        return null;
+        try (Connection connection = JDBC.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM project.product WHERE id = ?")) {
+            preparedStatement.setLong(1, productId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    long id = resultSet.getLong("id");
+                    long code = resultSet.getLong("code");
+                    String name = resultSet.getString("name");
+                    double price = resultSet.getDouble("price");
+                    int quantity = resultSet.getInt("quantity");
+                    ProductRole.PRODUCT type = ProductRole.PRODUCT.valueOf(resultSet.getString("type"));
+                    return new Product(id,code, name,  price, quantity, type);
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find product with ID: " + productId, e);
+        }
     }
     @Override
-    public List<Product> getProductsByIds(List<Long> ids) {
-        return null;
+    public List<Product> getProductsByIds(List<Long> ids) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        JDBC connection = new JDBC();
+        Connection con = connection.getConnection();
+        PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM project.product WHERE id = ANY(?)");
+        Array array = con.createArrayOf("NUMERIC", ids.toArray());
+        preparedStatement.setArray(1, array);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            long id = resultSet.getLong("id");
+            String name = resultSet.getString("name");
+            String type_role = resultSet.getString(6);
+            ProductRole.PRODUCT role = ProductRole.PRODUCT.valueOf(type_role);
+            double price = resultSet.getInt("price");
+            long code = resultSet.getLong("code");
+            Long quantity = resultSet.getLong("quantity");
+            Product product = new Product(id,code,name,price,quantity,role);
+            products.add(product);
+        }
+        return products;
     }
 }

@@ -1,6 +1,7 @@
 package by.ankudovich.entity;
 
 import by.ankudovich.enums.ProductRole;
+import by.ankudovich.enums.UserRole;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -43,6 +44,9 @@ public class Product implements Serializable {
 
 
     public Product() {
+    }
+
+    public Product(long id, long code, String name, double price, int quantity, UserRole.Role type) {
     }
 
     @Override

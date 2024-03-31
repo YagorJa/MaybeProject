@@ -22,4 +22,7 @@ public class Order {
         this.userId = userId;
         this.status = status;
     }
+
+    public Order() {
+    }
 }

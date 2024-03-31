@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class DispatcherServlet extends HttpServlet {
     @Override
@@ -72,20 +73,36 @@ public class DispatcherServlet extends HttpServlet {
 
         if (request.getParameter("addtobasket") != null) {
         BasketContr basketController = new BasketContr();
-        basketController.addOrder_Basket(request, response);
-    }
+            try {
+                basketController.addOrder_Basket(request, response);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if (request.getParameter("makeOrder") != null) {
         OrderContr orderController = new OrderContr();
-        orderController.makeOrder(request, response);
-    }
+            try {
+                orderController.makeOrder(request, response);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if (request.getParameter("gotobasket") != null) {
         AllOrderContr allOrdersController = new AllOrderContr();
-        allOrdersController.allOrders(request, response);
-    }
+            try {
+                allOrdersController.allOrders(request, response);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
         if (request.getParameter("cleanBasket") != null) {
         CleanBasketContr cleanBasketController = new CleanBasketContr();
-        cleanBasketController.clean(request, response);
-    }
+            try {
+                cleanBasketController.clean(request, response);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     }
 }

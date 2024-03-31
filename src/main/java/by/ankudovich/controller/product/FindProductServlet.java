@@ -18,49 +18,30 @@ public class FindProductServlet extends HttpServlet {
     }
 
     public void find(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if(productService ==null)
-
-        {
-            productService = new ProductService();
-            getServletContext().setAttribute("ProductRepository", productService);
-        }
-
-        long productId = Long.parseLong(req.getParameter("productId"));
-
-
-        ProductResponse product = productService.getProductById(productId);
-
-
-        req.setAttribute("product", product);
-
-
-        req.getRequestDispatcher("/jsp/admin/productDetails.jsp").forward(req, resp);
-    }
-    public void findProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String productName = request.getParameter("productName");
-            String productIdStr = request.getParameter("productId");
+            String productName = req.getParameter("productName");
+            String productIdStr = req.getParameter("productId");
             if (productName != null && !productName.isEmpty()) {
                 ProductResponse productResponse = productService.getProductByName(productName);
                 if (productResponse != null) {
-                    request.setAttribute("product", productResponse);
+                    req.setAttribute("product", productResponse);
                 } else {
-                    request.setAttribute("searchResult", "Продукт с указанным именем не найден");
+                    req.setAttribute("searchResult", "Продукт с указанным именем не найден");
                 }
             } else if (productIdStr != null && !productIdStr.isEmpty()) {
                 long productId = Long.parseLong(productIdStr);
                 ProductResponse productResponse = productService.getProductById(productId);
                 if (productResponse != null) {
-                    request.setAttribute("product", productResponse);
+                    req.setAttribute("product", productResponse);
                 } else {
-                    request.setAttribute("searchResult", "Продукт с указанным ID не найден");
+                    req.setAttribute("searchResult", "Продукт с указанным ID не найден");
                 }
             } else {
-                request.setAttribute("searchResult", "Введите имя продукта или ID для поиска");
+                req.setAttribute("searchResult", "Введите имя продукта или ID для поиска");
             }
         } catch (NumberFormatException e) {
-            request.setAttribute("searchResult", "Некорректный формат ID продукта");
+            req.setAttribute("searchResult", "Некорректный формат ID продукта");
         }
-        request.getRequestDispatcher("/jsp/admin/findProduct.jsp").forward(request, response);
+        req.getRequestDispatcher("/jsp/admin/findProduct.jsp").forward(req, resp);
     }
 }

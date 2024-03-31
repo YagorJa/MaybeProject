@@ -1,6 +1,7 @@
 package by.ankudovich.controller.product;
 
 import by.ankudovich.repository.product.ProductRepository;
+import by.ankudovich.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,22 +9,21 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class DeleteProductServlet extends HttpServlet {
-    private ProductRepository productRepository;
+public class DeleteProductServlet {
+        private final ProductService productService;
 
-
-
-    public void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (productRepository == null) {
-            productRepository = new ProductRepository();
-            getServletContext().setAttribute("ProductRepository", productRepository);
+        public DeleteProductServlet() {
+            this.productService = new ProductService();
         }
-        long id = Long.parseLong(req.getParameter("id"));
 
-
-        productRepository.deleteProductById(id);
-
-
-      //  resp.sendRedirect("/success.jsp");
-    }
+        public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+            try {
+                long productId = Long.parseLong(request.getParameter("deleteProductId"));
+                productService.deleteProduct(productId);
+                request.setAttribute("message", "Товар успешно удален");
+            } catch (NumberFormatException e) {
+                request.setAttribute("message", "Некорректный Product ID");
+            }
+            request.getRequestDispatcher("/jsp/admin/deleteProduct.jsp").forward(request, response);
+        }
 }

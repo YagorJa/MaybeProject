@@ -18,7 +18,7 @@ public class FindUserServlet {
     public void findUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String userLogin = request.getParameter("userLogin");
-            String userIdStr = request.getParameter("userId");
+            String userId = request.getParameter("userId");
             if (userLogin != null && !userLogin.isEmpty()) {
                 UserResponse userResponse = userService.getUserByLogin(userLogin);
                 if (userResponse != null) {
@@ -26,8 +26,8 @@ public class FindUserServlet {
                 } else {
                     request.setAttribute("searchResult", "Юзер с указанным именем не найден");
                 }
-            } else if (userIdStr != null && !userIdStr.isEmpty()) {
-                long useId = Long.parseLong(userIdStr);
+            } else if (userId != null && !userId.isEmpty()) {
+                long useId = Long.parseLong(userId);
                 UserResponse userResponse = userService.getUserById(useId);
                 if (userResponse != null) {
                     request.setAttribute("user", userResponse);

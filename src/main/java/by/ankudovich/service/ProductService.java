@@ -8,11 +8,12 @@ import by.ankudovich.repository.product.ProductRepository;
 import by.ankudovich.repository.product.ProductRepositoryInter;
 import by.ankudovich.repository.product.ProductRepositoryJDBC;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductService {
-    private ProductRepositoryInter productRepository;
+    private final ProductRepositoryInter productRepository;
 
     public ProductService() {
         this.productRepository = new ProductRepositoryJDBC();
@@ -57,7 +58,7 @@ public class ProductService {
             return null;
         }
     }
-    public List<ProductResponse> getProductsByIds(List<Long> ids) {
+    public List<ProductResponse> getProductsByIds(List<Long> ids) throws SQLException {
         ProductRepositoryInter repository = new ProductRepositoryJDBC();
         List<Product> products = repository.getProductsByIds(ids);
         if (products.isEmpty()) {
@@ -66,6 +67,15 @@ public class ProductService {
         ProductMapper productMapper = new ProductMapper();
         List<ProductResponse> productResponses = products.stream().map(product -> productMapper.toProductResponse(product)).toList();
         return productResponses;
+    }
+    public double getProductPriceID(long productId) {
+        ProductRepositoryInter repository = new ProductRepositoryJDBC();
+        Product product = repository.findById(productId);
+        if (product != null) {
+            return product.getPrice();
+        } else {
+            throw new RuntimeException("Товар с указанным ID не найден");
+        }
     }
 }
 

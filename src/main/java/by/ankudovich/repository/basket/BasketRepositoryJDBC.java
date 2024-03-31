@@ -134,7 +134,7 @@ public class BasketRepositoryJDBC implements BasketRepository {
     }
 
     @Override
-    public void clean(Long orderId, List<Long> productId, List<Long> count) {
+    public void cleanBas(Long orderId, List<Long> productId, List<Long> count) {
         final String tableDeleteBasket = "DELETE FROM project.basket where orderid = ?";
         final String tableDeleteOrders = "DELETE FROM project.order where id = ?";
         final String selectCountProduct = "UPDATE project.product SET quantity = ? where id = ?";
@@ -171,6 +171,18 @@ public class BasketRepositoryJDBC implements BasketRepository {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Ошибка при очистке корзины");
+        }
+    }
+
+    @Override
+    public void clean() {
+        try (Connection con = connection.getConnection();
+             PreparedStatement preparedStatementBasket = con.prepareStatement("DELETE FROM project.basket");
+             PreparedStatement preparedStatementOrders = con.prepareStatement("DELETE FROM project.order WHERE status = 'ORDERING'")) {
+            preparedStatementBasket.executeUpdate();
+            preparedStatementOrders.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

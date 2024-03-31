@@ -137,11 +137,49 @@ public class UserRepositoryJDBC implements UserRepository {
 
     @Override
     public User getUserById(Long userId) {
-        return null;
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM project.user WHERE id = ?")) {
+            preparedStatement.setLong(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    long id = resultSet.getLong(1);
+                    String name = resultSet.getString(2);
+                    String surname = resultSet.getString(3);
+                    String login = resultSet.getString(4);
+                    String password = resultSet.getString(5);
+                    String roleString = resultSet.getString(6);
+                    UserRole.Role role = UserRole.Role.valueOf(roleString);
+                    return new User(id, name, surname, login, password, role);
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find user with ID: " + userId, e);
+        }
     }
 
     @Override
     public User findByLogin(String userLogin) {
-        return null;
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM project.user WHERE login = ?")) {
+            preparedStatement.setString(1, userLogin);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    long id = resultSet.getLong(1);
+                    String name = resultSet.getString(2);
+                    String surname = resultSet.getString(3);
+                    String login = resultSet.getString(4);
+                    String password = resultSet.getString(5);
+                    String roleString = resultSet.getString(6);
+                    UserRole.Role role = UserRole.Role.valueOf(roleString);
+                    return new User(id, name, surname, login, password, role);
+                } else {
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find user with login: " + userLogin, e);
+        }
     }
 }
