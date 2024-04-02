@@ -41,28 +41,7 @@ public class LoginServlet  {
         } else {
             req.getRequestDispatcher("/jsp/user/user.jsp").forward(req, resp);
 
-//        getServletContext().getAttribute("fileRepository");
 
-
-//        String usernameLogin = req.getParameter("login");
-//        String passwordlogin = req.getParameter("password");
-//        try {
-//
-//            UserResponse authentication =  userService.authentication(usernameLogin,passwordlogin);// здесь лежит конкретный юзер которого я пробрасываю дальше
-//
-//
-//            // Успешная аутентификация: сохраняем идентификатор пользователя в сессии
-//            HttpSession session = req.getSession();
-//            session.setAttribute("userId", authentication.getId());
-//
-//            req.setAttribute("user", authentication);
-//            req.getRequestDispatcher("/jsp/authen/welcome.jsp").forward(req, resp);
-//
-//        } catch (Exception exception) {
-//            req.getRequestDispatcher("/jsp/authen/error.jsp").forward(req, resp);
-//        }
-//
-//
         }
     }
 }

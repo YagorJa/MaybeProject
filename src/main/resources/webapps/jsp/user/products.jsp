@@ -113,7 +113,7 @@
                         <h4>${product.nameOfProduct}</h4>
                         <p>Price: ${product.price}</p>
                         <p>Quantity: ${product.quantity}</p>
-                        <form class="add-to-cart-form" method="post" action="/ДОБАВИТ В КОРЗИНУ">
+                        <form class="add-to-cart-form" method="post" action="http://localhost:8090/TempDz4/basket">
                             <input type="hidden" name="goodId" value="${product.id}">
                             <label for="count">Count:</label>
                             <input type="number" id="count" name="count" min="1" value="1">

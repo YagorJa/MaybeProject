@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 public class Init extends HttpServlet {
     @Override
     public void init() throws ServletException {
-        super.init();
         Scheduler.start(new OrderService());
     }
 }

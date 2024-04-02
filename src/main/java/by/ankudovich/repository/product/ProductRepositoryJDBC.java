@@ -137,7 +137,7 @@ public class ProductRepositoryJDBC implements ProductRepositoryInter {
                     String name = resultSet.getString("name");
                     double price = resultSet.getDouble("price");
                     int quantity = resultSet.getInt("quantity");
-                    ProductRole.PRODUCT type = ProductRole.PRODUCT.valueOf(resultSet.getString("type"));
+                    ProductRole.PRODUCT type = ProductRole.PRODUCT.valueOf(resultSet.getString("type_role"));
                     return new Product(id,code, name,  price, quantity, type);
                 } else {
                     return null;

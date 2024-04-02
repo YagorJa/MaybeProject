@@ -12,74 +12,61 @@
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #214c84;
-            background-blend-mode: overlay;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
-        }
-
-        body {
-            background-color: transparent;
+            background: #f4f4f4;
         }
 
         .registration-cssave {
-            padding: 50px 0;
-        }
-
-        .registration-cssave form {
-            max-width: 800px;
-            padding: 50px 70px;
-            border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
             background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        .registration-cssave form h3 {
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
             font-weight: bold;
-            margin-bottom: 30px;
+            color: #333;
         }
 
-        .registration-cssave form label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 25px;
-        }
-
-        .registration-cssave form label > span {
-            margin-bottom: 5px;
-        }
-
-        .registration-cssave .item {
-            border-radius: 10px;
-            padding: 10px 20px;
+        input[type="text"] {
             width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             box-sizing: border-box;
         }
 
-        .registration-cssave .create-account {
-            border-radius: 30px;
+        button {
+            display: block;
+            width: 100%;
+            background-color: #f44336;
+            color: #fff;
             padding: 10px 20px;
-            font-size: 18px;
-            font-weight: bold;
-            background-color: #3f93ff;
             border: none;
-            color: white;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 576px) {
-            .registration-cssave form {
-                padding: 50px 20px;
-            }
-        }
-
-        .registration-cssave .create-account:hover {
-            background-color: #2a6dbb;
+            border-radius: 4px;
             cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #d32f2f;
+        }
+
+        .success-message {
+            color: green;
+            text-align: center;
         }
     </style>
 </head>
@@ -107,9 +94,9 @@
         <p>ID: ${user.id}</p>
         <p>Name: ${user.name}</p>
         <p>Surname: ${user.surname}</p>
+<%--        <p>Role: ${user.role}</p>--%>
         <p>Login: ${user.login}</p>
         <p>Password: ${user.password}</p>
-        <p>Role: ${user.role}</p>
     </c:if>
     <c:if test="${not empty searchResult}">
         <p>${searchResult}</p>

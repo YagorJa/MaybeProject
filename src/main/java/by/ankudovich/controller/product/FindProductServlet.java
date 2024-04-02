@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class FindProductServlet extends HttpServlet {
+public class FindProductServlet {
     private ProductService productService;
 
     public FindProductServlet() {
@@ -42,6 +42,6 @@ public class FindProductServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             req.setAttribute("searchResult", "Некорректный формат ID продукта");
         }
-        req.getRequestDispatcher("/jsp/admin/findProduct.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/admin/productDetails.jsp").forward(req, resp);
     }
 }

@@ -99,22 +99,28 @@
         <form method="post" action="http://localhost:8090/TempDz4/jsp/admin/addProduct.jsp">
             <button type="submit">Add New Product</button>
         </form>
-        <form method="post" action="http://localhost:8090/TempDz4/jsp/products/displayProducts.jsp">
-            <button type="submit">Show All Products</button>
+        <form method="post" action="http://localhost:8090/TempDz4/editProducts">
+            <div>
+                <button type="submit" class="create-account">Show All Products</button>
+            </div>
         </form>
+        <c:if test="${not empty products}">
+            <div class="all-products">
+                <h3>All Products</h3>
+                <div class="product-cards">
+                    <c:forEach var="product" items="${products}">
+                        <div class="product-card">
+                            <p>ID: ${product.id}</p>
+                            <p>CODE:${product.codeOfProduct}
+                            <p>Name: ${product.nameOfProduct}</p>
+                            <p>Price: ${product.price}</p>
+                            <p>Quantity: ${product.quantity}</p>
+                            <p>Type: ${product.typeOfProduct}</p>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </c:if>
     </div>
-
-    <c:if test="${not empty products}">
-        <div class="all-products">
-            <h3>All Products</h3>
-            <ul>
-                <c:forEach var="product" items="${products}">
-                    <li>ID: ${product.id}, Name: ${product.name}, Type: ${product.type}, Price: ${product.price},
-                        Quantity: ${product.quantity}</li>
-                </c:forEach>
-            </ul>
-        </div>
-    </c:if>
-</div>
 </body>
 </html>

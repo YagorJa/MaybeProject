@@ -56,7 +56,8 @@ public class UserService {
                 return userMapper.toUserResponse(user);
             }
         }
-            throw new RuntimeException("ПОльзователь с таким логином не найден");
+//        return null;
+            throw new RuntimeException("Пользователь с таким логином не найден");
 
         }
 
