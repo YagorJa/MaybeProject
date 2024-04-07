@@ -99,12 +99,9 @@
     <div class="welcome-message">
         <h1>Welcome, ${user.name} ${user.surname}!</h1>
         <div class="smiley">&#128515;</div>
-        <a href="${pageContext.request.contextPath}/editProfile" class="edit-button">Редактировать свои данные</a>
-        <%-- короче тут изза того что у меня тег <a> без явного указания метода
-          используется метод GET по дефолту типо. Поэтому, для обработки GET-запросов в моей сервлете редактирования профиля
-          EditProfileServlet, я должен явно указать метод doGet(), чтобы обработать GET-запросы и открыть форму редактирования профиля.
-          а вот уже на самой форме я использую метод пост для работы с данными и само собой должен определить его в сервлетике
-         --%>
+        <form action="${pageContext.request.contextPath}/editProfile" method="post">
+            <button type="submit" class="edit-button">Редактировать свои данные</button>
+        </form>
     </div>
     <form method="post" action="jsp/user/products.jsp">
         <div>

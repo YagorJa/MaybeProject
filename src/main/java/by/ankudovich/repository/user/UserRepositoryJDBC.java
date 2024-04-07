@@ -88,7 +88,7 @@ public class UserRepositoryJDBC implements UserRepository {
 
     @Override
     public void updateUser(User user) {
-    String sql = "UPDATE user SET name = ?, surname = ?, login = ?, password = ? WHERE id = ?";
+    String sql = "UPDATE project.user SET name = ?, surname = ?, login = ?, password = ? WHERE id = ?";
         try (Connection connection = JDBC.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getName());

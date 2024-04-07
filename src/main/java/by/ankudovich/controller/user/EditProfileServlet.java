@@ -1,6 +1,7 @@
 package by.ankudovich.controller.user;
 
 import by.ankudovich.api.User.UserRequest;
+import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
@@ -17,7 +18,7 @@ public class EditProfileServlet {
 
     public void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
-        User user = (User) session.getAttribute("authenticatedUser");
+        UserResponse user = (UserResponse) session.getAttribute("authenticatedUser");
         if (user == null) {
             req.setAttribute("error", "Пользователь не авторизован");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);

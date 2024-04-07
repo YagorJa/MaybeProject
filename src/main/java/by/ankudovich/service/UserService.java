@@ -55,15 +55,20 @@ public class UserService {
     }
 
     public UserResponse authentication(String login, String password) {
+        UserResponse userResponse = new UserResponse();
         List<User> users = (List<User>) userRepository.allUsers();
         UserMapper userMapper = new UserMapper();
         for (User user : users) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 return userMapper.toUserResponse(user);
             }
+            if (user.getLogin().equals(login) && !user.getPassword().equals(password)) {
+                return userResponse;
+            }
         }
-//        return null;
-            throw new RuntimeException("Пользователь с таким логином не найден");
+        return null;
+
+//            throw new RuntimeException("Пользователь с таким логином не найден");
 
         }
 

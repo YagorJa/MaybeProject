@@ -1,3 +1,4 @@
+<%--@elvariable id="errorMessage" type="by.ankudovich.controller.user.LoginServlet"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,8 @@
             border-radius:15px}
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8d7da; /* Цвет фона - светло-красный */
-            color: #721c24; /* Цвет текста - темно-красный */
+            background-color: #f8d7da;
+            color: #721c24;
             padding: 50px;
             text-align: center;
         }
@@ -31,6 +32,7 @@
 </head>
 <body>
 <h1>Error</h1>
+<p>${errorMessage}</p> 
 <p>Invalid username or password. Please try again.</p>
 <span class="emoji">😢</span>
 <br>
