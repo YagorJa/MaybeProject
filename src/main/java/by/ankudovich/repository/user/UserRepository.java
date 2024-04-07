@@ -11,7 +11,7 @@ public interface UserRepository {
 
     public Collection<User> allUsers();
 
-    public void updateUser(long id, String newName, String newSurname, String newLogin, String newPassword);
+    public void updateUser(User user);
 
     public User authentication(String login, String password);
 

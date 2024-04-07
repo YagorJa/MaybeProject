@@ -44,8 +44,14 @@ public class UserService {
         return false;
     }
 
-    public void updateUser(long currentUserId, String name, String surname, String login, String password) {
-        userRepository.updateUser(currentUserId, name, surname, login, password);
+    public void updateUser(UserRequest userRequest) {
+        User user = new User();
+        user.setId(userRequest.getId());
+        user.setName(userRequest.getName());
+        user.setSurname(userRequest.getSurname());
+        user.setLogin(userRequest.getLogin());
+        user.setPassword(userRequest.getPassword());
+        userRepository.updateUser(user);
     }
 
     public UserResponse authentication(String login, String password) {

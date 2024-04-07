@@ -51,6 +51,10 @@ public class DispatcherServlet extends HttpServlet {
             DisplayAllServlet displayAllServlet = new DisplayAllServlet();
             displayAllServlet.showAllUsers(request, response);
         }
+        if ("/editProfile".equals(path)) {
+            EditProfileServlet editProfileServlet = new EditProfileServlet();
+            editProfileServlet.edit(request, response);
+        }
         if ("/deleteuser".equals(path)) {
             DeleteServlet deleteServlet = new DeleteServlet();
             deleteServlet.delete(request, response);
@@ -79,13 +83,9 @@ public class DispatcherServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
-        if (request.getParameter("addtobasket") != null) {
+        if (request.getParameter("basket") != null) {
         BasketContr basketController = new BasketContr();
-            try {
-                basketController.addOrder_Basket(request, response);
-            } finally {
-
-            }
+            basketController.addOrder_Basket(request, response);
         }
         if (request.getParameter("makeOrder") != null) {
         OrderContr orderController = new OrderContr();

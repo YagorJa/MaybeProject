@@ -19,12 +19,8 @@ public class DeleteProductServlet {
         public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             try {
                 long productId = Long.parseLong(request.getParameter("deleteProductId"));
-                if (productService.getProductById(productId) != null) {
-                    request.setAttribute("message", "Продукта с таким ID не существует");
-                } else {
-                    productService.deleteProduct(productId);
-                    request.setAttribute("message", "Товар успешно удален");
-                }
+                productService.deleteProduct(productId);
+                request.setAttribute("message", "Товар успешно удален");
             } catch (NumberFormatException e) {
                 request.setAttribute("message", "Некорректный Product ID");
             }

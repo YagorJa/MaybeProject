@@ -12,5 +12,4 @@ public class UserResponse {
     private String login;
     private String password;
     private UserRole.Role role;
-    private String fullName;
 }

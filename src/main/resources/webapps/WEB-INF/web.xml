@@ -153,14 +153,14 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>EditProfileServlet</servlet-name>
-        <servlet-class>by.ankudovich.controller.user.EditProfileServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EditProfileServlet</servlet-name>
-        <url-pattern>/editProfile</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>EditProfileServlet</servlet-name>-->
+<!--        <servlet-class>by.ankudovich.controller.user.EditProfileServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>EditProfileServlet</servlet-name>-->
+<!--        <url-pattern>/editProfile</url-pattern>-->
+<!--    </servlet-mapping>-->
     <filter>
         <filter-name>Filter</filter-name>
         <filter-class>by.ankudovich.filter.Filter</filter-class>

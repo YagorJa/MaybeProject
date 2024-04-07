@@ -1,5 +1,7 @@
 package by.ankudovich.controller.user;
 
+import by.ankudovich.api.User.UserRequest;
+import by.ankudovich.entity.User;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -9,36 +11,38 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-public class EditProfileServlet extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/authen/edit.jsp").forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService repository = (UserService) getServletContext().getAttribute("fileRepository");
-
-        HttpSession session = req.getSession();
-
-        Long currentId = (Long) session.getAttribute("userId");
-
-        if (currentId != null) {   // тут я думаю мб какую то по круче проверку добавить мб, например есть ли впринципе ПОЛЬЗОВАТЕЛЬ а не его айди, буду рад предложениям по реализации
+public class EditProfileServlet {
 
 
-            long currentUserId = currentId;
-            String login = req.getParameter("login");
-            String password = req.getParameter("password");
-            String name = req.getParameter("name");
-            String surname = req.getParameter("surname");
 
-            repository.updateUser(currentUserId, name, surname, login, password);
-
-        req.getRequestDispatcher("/jsp/authen/login.jsp").forward(req, resp);
-        }else {
+    public void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        User user = (User) session.getAttribute("authenticatedUser");
+        if (user == null) {
+            req.setAttribute("error", "Пользователь не авторизован");
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            return;
+        }
+        long userId = user.getId();
+        String name = req.getParameter("name");
+        String surname = req.getParameter("surname");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        UserRequest userRequest = new UserRequest();
+        UserService userService = new UserService();
+        userRequest.setId(userId);
+        userRequest.setLogin(login);
+        userRequest.setName(name);
+        userRequest.setSurname(surname);
+        userRequest.setPassword(password);
+        try {
+            userService.updateUser(userRequest);
+            req.setAttribute("user", userRequest);
+            req.getRequestDispatcher("/jsp/authen/edit.jsp").forward(req, resp);
+        } catch (IllegalArgumentException e) {
+            req.setAttribute("error", e.getMessage());
             req.getRequestDispatcher("/jsp/authen/error.jsp").forward(req, resp);
         }
     }
-
 }
+

@@ -56,7 +56,7 @@ public class OrderService {
         Order orderByUserid = orderJDBCRepository.getOrderByUserid(userId);
         BasketRepository basketRepository = new BasketRepositoryJDBC();
         Long getOrderId = 0L;
-        if (orderByUserid.getStatus().equals("Создан")) {
+        if (orderByUserid.getStatus()!=null && orderByUserid.getStatus().equals("Создан")) {
             getOrderId = orderByUserid.getId();
         }
         if (getOrderId == null) {

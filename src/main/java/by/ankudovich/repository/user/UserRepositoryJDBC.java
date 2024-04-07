@@ -87,21 +87,18 @@ public class UserRepositoryJDBC implements UserRepository {
     }
 
     @Override
-    public void updateUser(long id, String newName, String newSurname, String newLogin, String newPassword) {
-        try (Connection connection = JDBC.getConnection()) {
-            String sql = "UPDATE user SET name = ?, surname = ?, login = ?, password = ? WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, newName);
-            statement.setString(2, newSurname);
-            statement.setString(3, newLogin);
-            statement.setString(4, newPassword);
-            statement.setLong(5, id);
-            int rowsUpdated = statement.executeUpdate();
-            if (rowsUpdated > 0) {
-                System.out.println("User updated successfully.");
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException("Failed to update user.", ex);
+    public void updateUser(User user) {
+    String sql = "UPDATE user SET name = ?, surname = ?, login = ?, password = ? WHERE id = ?";
+        try (Connection connection = JDBC.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getSurname());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getLogin());
+            preparedStatement.setLong(5, user.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to update user with ID: " + user.getId(), e);
         }
     }
 
@@ -145,10 +142,10 @@ public class UserRepositoryJDBC implements UserRepository {
                     long id = resultSet.getLong(1);
                     String name = resultSet.getString(2);
                     String surname = resultSet.getString(3);
-                    String login = resultSet.getString(4);
-                    String password = resultSet.getString(5);
-                    String roleString = resultSet.getString(6);
+                    String roleString = resultSet.getString(4);
                     UserRole.Role role = UserRole.Role.valueOf(roleString);
+                    String login = resultSet.getString(5);
+                    String password = resultSet.getString(6);
                     return new User(id, name, surname, login, password, role);
                 } else {
                     return null;
@@ -169,10 +166,10 @@ public class UserRepositoryJDBC implements UserRepository {
                     long id = resultSet.getLong(1);
                     String name = resultSet.getString(2);
                     String surname = resultSet.getString(3);
-                    String login = resultSet.getString(4);
-                    String password = resultSet.getString(5);
-                    String roleString = resultSet.getString(6);
+                    String roleString = resultSet.getString(4);
                     UserRole.Role role = UserRole.Role.valueOf(roleString);
+                    String login = resultSet.getString(5);
+                    String password = resultSet.getString(6);
                     return new User(id, name, surname, login, password, role);
                 } else {
                     return null;
