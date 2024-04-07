@@ -1,8 +1,6 @@
 package by.ankudovich.controller;
 
 
-
-
 import by.ankudovich.controller.basket.BasketContr;
 import by.ankudovich.controller.basket.CleanBasketContr;
 import by.ankudovich.controller.order.AllOrderContr;
@@ -71,46 +69,37 @@ public class DispatcherServlet extends HttpServlet {
             LogOutUser logOutUser = new LogOutUser();
             logOutUser.logoutUser(request, response);
         }
-        if ("/products".equals(path)) {
-            DisplayProductsUser showProductsClientController = new DisplayProductsUser();
-            showProductsClientController.showProducts(request, response);
+        if ("/products".equals(path) && request.getParameter("showproducts") != null) {
+            DisplayProductsUser displayProductsUser = new DisplayProductsUser();
+            displayProductsUser.showProducts(request, response);
         }
-        if ("/basket".equals(path)) {
-            AllOrderContr allOrdersController = new AllOrderContr();
+        if ("/products".equals(path) && request.getParameter("addProductByBasket") != null) {
+            BasketContr basketContr = new BasketContr();
+            basketContr.addOrder_Basket(request, response);
+        }
+        if ("/basket".equals(path) && request.getParameter("basket") != null) {
+            AllOrderContr allOrderContr = new AllOrderContr();
             try {
-                allOrdersController.allOrders(request, response);
+                allOrderContr.allOrders(request, response);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-        if (request.getParameter("basket") != null) {
-        BasketContr basketController = new BasketContr();
-            basketController.addOrder_Basket(request, response);
-        }
-        if (request.getParameter("makeOrder") != null) {
-        OrderContr orderController = new OrderContr();
+        if ("/basket".equals(path) && request.getParameter("makeOrder") != null) {
+            OrderContr orderContr = new OrderContr();
             try {
-                orderController.makeOrder(request, response);
+                orderContr.makeOrder(request, response);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-        if (request.getParameter("gotobasket") != null) {
-        AllOrderContr allOrdersController = new AllOrderContr();
+        if ("/basket".equals(path) && request.getParameter("cleanBasket") != null) {
+            CleanBasketContr basketController = new CleanBasketContr();
             try {
-                allOrdersController.allOrders(request, response);
+                basketController.clean(request, response);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         }
-        if (request.getParameter("cleanBasket") != null) {
-        CleanBasketContr cleanBasketController = new CleanBasketContr();
-            try {
-                cleanBasketController.clean(request, response);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
     }
 }

@@ -1,5 +1,6 @@
 package by.ankudovich.controller.basket;
 
+import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 import by.ankudovich.service.OrderService;
 import by.ankudovich.service.ProductService;
@@ -33,7 +34,7 @@ public class BasketContr {
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
             return;
         }
-        User user = (User) session.getAttribute("authenticatedUser");
+        UserResponse user = (UserResponse) session.getAttribute("authenticatedUser");
         if (user == null) {
             req.setAttribute("error", "User not logged in");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
@@ -41,7 +42,7 @@ public class BasketContr {
         }
         try {
             long productPrice = (long) productService.getProductPriceID(Long.valueOf(idProduct));
-            orderService.addOrderByBasket(user.getId(), Long.valueOf(idProduct), productPrice, Long.valueOf(productCount));
+            orderService.addOrderByBasket(user.getId(), Long.valueOf(idProduct), productPrice, Double.valueOf((productCount)));
             req.getRequestDispatcher("/jsp/user/products.jsp").forward(req, resp);
         } catch (IllegalArgumentException e) {
             req.setAttribute("error", e.getMessage());

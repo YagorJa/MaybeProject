@@ -76,8 +76,8 @@
         <div class="product-cards">
             <c:forEach var="product" items="${orders.products}">
                 <article class="product-card">
-                    <h4>${product.name}</h4>
-                    <p>${product.type}</p>
+                    <h4>${product.nameOfProduct}</h4>
+                    <p>${product.typeOfProduct}</p>
                     <p>Цена: ${product.price}</p>
                 </article>
             </c:forEach>

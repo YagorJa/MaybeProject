@@ -59,7 +59,7 @@ public class BasketRepositoryJDBC implements BasketRepository {
     public void makeOrder(Long userId) {
         try (Connection connect = connection.getConnection();
              PreparedStatement preparedStatement = connect.prepareStatement("UPDATE project.order SET status = ? where userid = ?")) {
-            preparedStatement.setString(1, "Оформлен и почти запакован :)");
+            preparedStatement.setString(1, "COMPLETED");
             preparedStatement.setLong(2, userId);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

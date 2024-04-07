@@ -17,11 +17,6 @@ public class Order {
         this.status = status;
     }
 
-    public Order(Long id, Long userId, String status) {
-        this.id = id;
-        this.userId = userId;
-        this.status = status;
-    }
 
     public Order() {
     }

@@ -2,109 +2,98 @@
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="by.ankudovich.entity.*" %>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Management</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Orders</title>
     <style>
-        body {
+        :root {
+            --primary-color: #2F80ED;
+            --secondary-color: #333333;
+            --background-color: #F2F2F2;
+            --white: #FFFFFF;
+            --black: #000000;
+        }
+
+        body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #f3f4f6;
+            background-color: var(--background-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-family: Arial, sans-serif;
         }
 
-        .product-container {
+        .container {
             max-width: 800px;
-            margin: 0 auto;
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: var(--white);
         }
 
-        h3 {
-            font-size: 24px;
-            font-weight: 700;
+        h2 {
+            font-weight: bold;
             margin-bottom: 20px;
-            color: #333;
-            text-align: center;
-        }
-
-        .create-account {
-            background-color: #3f93ff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .create-account:hover {
-            background-color: #1e78ff;
-        }
-
-        .all-products {
-            margin-top: 40px;
+            color: var(--primary-color);
         }
 
         .product-card {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             padding: 20px;
             margin-bottom: 20px;
+            background-color: var(--white);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .product-card h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 0 10px;
-            color: #333;
+            margin: 0;
+            font-size: 16px;
+            color: var(--primary-color);
         }
 
         .product-card p {
-            margin: 0;
-            color: #666;
-            font-size: 16px;
+            margin: 5px 0;
+            font-size: 14px;
+            color: var(--secondary-color);
         }
 
-        .add-to-cart-btn {
-            background-color: #4caf50;
-            color: #fff;
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--white);
             border: none;
-            padding: 8px 16px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .add-to-cart-btn:hover {
-            background-color: #43a047;
-        }
-
-        input[type="number"] {
-            width: 60px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        button:hover {
+            background-color: darkblue(var(--primary-color), 10%);
         }
     </style>
-</head>F
+</head>
 <body>
-<div class="product-container">
-    <h3>User Panel: Products</h3>
+<div class="container">
     <form method="post" action="http://localhost:8090/TempDz4/products">
-        <div>
-            <button type="submit" class="create-account">Show All Products</button>
-        </div>
-    </form>
+        <h2>Товары</h2>
 
-<%--    <jsp:useBean id="products" scope="request" type="by.ankudovich.entity.Product"/>--%>
-    <c:if test="${not empty products}">
-        <div class="all-products">
-            <h3>All Products</h3>
+        <c:if test="${not empty products}">
             <div class="product-grid">
                 <c:forEach var="product" items="${products}">
                     <div class="product-card">
@@ -113,17 +102,24 @@
                         <h4>${product.nameOfProduct}</h4>
                         <p>Price: ${product.price}</p>
                         <p>Quantity: ${product.quantity}</p>
-                        <form class="add-to-cart-form" method="post" action="http://localhost:8090/TempDz4/basket">
-                            <input type="hidden" name="goodId" value="${product.id}">
-                            <label for="count">Count:</label>
-                            <input type="number" id="count" name="count" min="1" value="1">
-                            <button type="submit" class="add-to-cart-btn">В корзину</button>
-                        </form>
                     </div>
                 </c:forEach>
             </div>
-        </div>
-    </c:if>
+        </c:if>
+
+        <button type="submit" class="show-products" name="showproducts">Показать все товары</button>
+
+        <h2>Добавить в корзину</h2>
+        <label for="idProduct">ID товара:</label>
+        <input type="text" name="idProduct" placeholder="ID">
+        <label for="ProductCount">Количество:</label>
+        <input type="text" name="ProductCount" placeholder="Количество">
+        <button type="submit" name="addProductByBasket">Добавить в корзину</button>
+    </form>
+
+    <form method="post" action="http://localhost:8090/TempDz4/basket">
+        <button type="submit" name="basket">Перейти в корзину</button>
+    </form>
 </div>
 </body>
 </html>

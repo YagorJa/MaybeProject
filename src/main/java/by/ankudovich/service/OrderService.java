@@ -17,7 +17,7 @@ import java.util.List;
 
 public class OrderService {
 
-    public OrderResponse addUserByOrder(Long userId, Long productPrice) throws SQLException {
+    public OrderResponse addUserByOrder(Long userId, Double productPrice) throws SQLException {
         OrderRepository repository = new OrderRepositoryJDBC();
         OrderMapper orderMapper = new OrderMapper();
         Order order = repository.add(userId, productPrice);
@@ -25,7 +25,7 @@ public class OrderService {
     }
 
 
-    public BasketResponse addOrderByBasket(Long userId, Long productId, Long count, Long productPrice) throws SQLException {
+    public BasketResponse addOrderByBasket(Long userId, Long productId, Long count, Double productPrice) throws SQLException {
         OrderRepository orderRepository = new OrderRepositoryJDBC();
         Order orderByUserId = orderRepository.getOrderByUserid(userId);
         if (orderByUserId.getId() == null || !orderByUserId.getStatus().equals("ORDERING")) {
@@ -56,7 +56,7 @@ public class OrderService {
         Order orderByUserid = orderJDBCRepository.getOrderByUserid(userId);
         BasketRepository basketRepository = new BasketRepositoryJDBC();
         Long getOrderId = 0L;
-        if (orderByUserid.getStatus()!=null && orderByUserid.getStatus().equals("Создан")) {
+        if (orderByUserid.getStatus()!=null && orderByUserid.getStatus().equals("ORDERING")) {
             getOrderId = orderByUserid.getId();
         }
         if (getOrderId == null) {
