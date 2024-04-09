@@ -2,17 +2,12 @@ package by.ankudovich.controller.user;
 
 import by.ankudovich.api.User.UserRequest;
 import by.ankudovich.api.User.UserResponse;
-import by.ankudovich.entity.User;
 import by.ankudovich.enums.UserRole;
-import by.ankudovich.repository.user.UserRepository;
-import by.ankudovich.repository.user.UserRepositoryJDBC;
 import by.ankudovich.service.UserService;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
 
 public class LoginServlet  {
