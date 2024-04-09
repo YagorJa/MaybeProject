@@ -6,7 +6,7 @@ import by.ankudovich.entity.Product;
 
 
 public class ProductMapper {
-    //метотд который записывает ответ,который формирует бэк.
+
     public ProductResponse toProductResponse(Product product) {
         ProductResponse productResponse = new ProductResponse();
         productResponse.setId(product.getId());
@@ -18,7 +18,7 @@ public class ProductMapper {
         return productResponse;
     }
 
-    //метод для работы с полями из фронта
+
     public Product toEntity (ProductRequest productRequest){
         Product product = new Product();
 

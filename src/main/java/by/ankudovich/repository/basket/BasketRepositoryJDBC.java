@@ -47,7 +47,7 @@ public class BasketRepositoryJDBC implements BasketRepository {
             basket.setOrderId(orderId);
             basket.setProductId(productId);
             basket.setCount(count);
-//            timerDeleteOrdersByBasket(orderId, count, productId);
+
             return basket;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,48 +93,7 @@ public class BasketRepositoryJDBC implements BasketRepository {
         }
     }
 
-//    public void timerDeleteOrdersByBasket(Long orderId, Long count, Long productId) {
-//        try (Connection connect = connection.getConnection();
-//             PreparedStatement preparedStatementStatus = connect.prepareStatement("select status from project.order WHERE id = ?");
-//             PreparedStatement preparedStatementProduct = connect.prepareStatement("SELECT quantity from project.product WHERE id = ?");
-//             PreparedStatement preparedStatementBasket = connect.prepareStatement("DELETE FROM project.basket where orderid = ?");
-//             PreparedStatement preparedStatementOrders = connect.prepareStatement("DELETE FROM project.order where id = ?");) {
-//            preparedStatementStatus.setLong(1, orderId);
-//            ResultSet status = preparedStatementStatus.executeQuery();
-//            status.next();
-//            String statusString = status.getString(1);
-//            preparedStatementProduct.setLong(1, productId);
-//            ResultSet executeQuery = preparedStatementProduct.executeQuery();
-//            executeQuery.next();
-//            long quantityLong = executeQuery.getLong(1);
-//            if (statusString.equals("Создан") && statusString != null) {
-//                preparedStatementProduct.executeUpdate();
-//                preparedStatementBasket.setLong(1, orderId);
-//                preparedStatementBasket.executeUpdate();
-//                preparedStatementOrders.setLong(1, orderId);
-//                preparedStatementOrders.executeUpdate();
-//            }
-//            Timer timer = new Timer();
-//            TimerTask task = new TimerTask() {
-//                public void run() {
-//                    if (statusString.equals("Создан") && statusString != null) {
-//                        try {
-//                            preparedStatementProduct.executeUpdate();
-//                            preparedStatementBasket.executeUpdate();
-//                            preparedStatementOrders.executeUpdate();
-//                        } catch (SQLException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            };
-//            long time = 7200000L;
-//            timer.schedule(task, time);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("Ошибка при удалении заказов по таймеру");
-//        }
-//    }
+
 
     @Override
     public void cleanBas(Long orderId, List<Long> productId, List<Long> count) {

@@ -9,47 +9,25 @@
         body, html {
             margin: 0;
             padding: 0;
-            background-color: #214c84;
-            background-blend-mode: overlay;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100%;
+            background: #f0f0f0;
         }
 
-        body {
-            background-color: transparent;
-        }
-
-        .registration-cssave form {
+        .basket form {
             max-width: 800px;
             padding: 50px 70px;
             border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
 
-        .registration-cssave form h3 {
-            font-weight: bold;
+        .basket form h2 {
+            font-weight: 500;
             margin-bottom: 30px;
-        }
-
-        .registration-cssave form label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 25px;
-        }
-
-        .registration-cssave form label > span {
-            margin-bottom: 5px;
-        }
-
-        @media (max-width: 576px) {
-            .registration-cssave form {
-                padding: 50px 20px;
-            }
+            color: #333;
         }
 
         .product-cards {
@@ -62,46 +40,56 @@
             width: 200px;
             padding: 10px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #fafafa;
         }
 
         .product-card h4 {
             margin: 0;
+            color: #333;
         }
 
         .product-card p {
             margin: 5px 0;
             font-size: 14px;
-            color: #555;
+            color: #666;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-<div class="registration-cssave">
-    <form method="post" action="http://localhost:8090/TempDz4/basketF">
-        <div>
-            <h2>Корзина товаров</h2>
-            <div class="product-cards">
-                <c:forEach var="product" items="${orders.products}">
-                    <div class="product-card">
-                        <h4>${product.nameOfProduct}</h4>
-                        <p>${product.typeOfProduct}</p>
-                        <p>Цена: ${product.price}</p>
-                    </div>
-                </c:forEach>
-            </div>
-            <div>
-                <h2>Статус заказа:</h2>
-                <p>${orderStatus}</p>
-            </div>
+<main class="basket">
+    <form method="post" action="http://localhost:8090/TempDz4/basket">
+        <h2>Корзина товаров</h2>
+        <div class="product-cards">
+            <c:forEach var="product" items="${orders.products}">
+                <article class="product-card">
+                    <h4>${product.nameOfProduct}</h4>
+                    <p>${product.typeOfProduct}</p>
+                    <p>Цена: ${product.price}</p>
+                </article>
+            </c:forEach>
         </div>
-    </form>
-    <form method="post" action="http://localhost:8090/TempDz4/jsp/user/products.jsp">
         <div>
-            <button type="submit" class="create-account">Перейти к продуктам</button>
+            <h2>Статус заказа:</h2>
+            <p>${orderStatus}</p>
         </div>
+        <button type="submit" name="makeOrder">Оформить</button>
+        <button type="submit" name="cleanBasket">Удалить все</button>
     </form>
-</div>
+</main>
 </body>
 </html>

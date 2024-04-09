@@ -5,7 +5,7 @@ import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 
 public class UserMapper {
-    //метотд который записывает ответ,который формирует бэк.
+
     public UserResponse toUserResponse (User user){
         UserResponse userResponse = new UserResponse();
         userResponse.setId(user.getId());
@@ -17,7 +17,7 @@ public class UserMapper {
         return  userResponse;
     }
 
-    //метод для работы с полями из фронта
+
     public User toEntity (UserRequest userRequest){
         User user = new User();
         user.setName(userRequest.getName());

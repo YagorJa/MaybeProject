@@ -26,9 +26,9 @@ public class UserService {
         }
 
         UserMapper userMapper = new UserMapper();
-//        UserRole.Role role = userRepository.allUsers().isEmpty() ? UserRole.Role.ADMIN : UserRole.Role.USER;
+
         User user = userMapper.toEntity(userRequest);
-//        user.setRole(role);
+
         user = userRepository.add(user);
         return userMapper.toUserResponse(user);
     }

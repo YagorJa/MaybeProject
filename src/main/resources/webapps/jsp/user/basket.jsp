@@ -13,35 +13,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #51d211;
-            background-blend-mode: overlay;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background: #f5f5f5;
         }
 
         .basket form {
             max-width: 800px;
             padding: 50px 70px;
             border-radius: 10px;
-            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             background-color: #fff;
         }
 
-        .basket form h3 {
-            font-weight: bold;
+        .basket form h2 {
+            font-weight: 500;
             margin-bottom: 30px;
-        }
-
-        .basket form label {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 25px;
-        }
-
-        @media (max-width: 576px) {
-            .basket form {
-                padding: 50px 20px;
-            }
+            color: #333;
         }
 
         .product-cards {
@@ -54,18 +40,33 @@
             width: 200px;
             padding: 10px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #7c7676;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #f8f8f8;
         }
 
         .product-card h4 {
             margin: 0;
+            color: #333;
         }
 
         .product-card p {
             margin: 5px 0;
             font-size: 14px;
-            color: #555;
+            color: #666;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>

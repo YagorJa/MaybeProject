@@ -1,5 +1,6 @@
 package by.ankudovich.controller.basket;
 
+import by.ankudovich.api.User.UserResponse;
 import by.ankudovich.entity.User;
 import by.ankudovich.service.BasketService;
 import by.ankudovich.service.OrderService;
@@ -15,10 +16,10 @@ public class CleanBasketContr {
     public void clean(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null) {
-            User user = (User) session.getAttribute("authenticatedUser");
+            UserResponse user = (UserResponse) session.getAttribute("authenticatedUser");
             if (user != null) {
-                OrderService orderService = new OrderService();
-                orderService.cleanBasket(user.getId());
+                BasketService basketService = new BasketService();
+                basketService.cleanBas(user.getId());
                 session.getAttribute("orders");
                 req.getRequestDispatcher("/jsp/user/products.jsp").forward(req, resp);
             }

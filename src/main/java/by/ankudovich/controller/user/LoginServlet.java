@@ -32,7 +32,6 @@ public class LoginServlet  {
         UserService userService = new UserService();
         UserResponse authenticate = userService.authentication(login, password);
         if (authenticate == null) {
-//            req.getRequestDispatcher("/jsp/authen/error.jsp").forward(req,resp);
             req.getRequestDispatcher("/jsp/authen/register.jsp").forward(req, resp);
         }
         if (authenticate.equals(new UserResponse())) {
